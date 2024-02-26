@@ -1,0 +1,67 @@
+{
+  "menu": [
+    {
+      "url": "/dashboard",
+      "name": "Dashboard",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "dashboard"
+    },
+    {
+      "url": "/admins",
+      "name": "Administrators",
+      "icon": "menu-icon tf-icons ti ti-users",
+      "slug": "admin.list"
+    },
+    {
+      "url": "/ganesh-idols",
+      "name": "Ganesh Idols",
+      "icon": "menu-icon tf-icons ti ti-files",
+      "slug": "ganesh-idols",
+      "submenu": [
+        {
+          "url": "/",
+          "name": "Analytics",
+          "slug": "dashboard-analytics"
+        },
+        {
+          "url": "dashboard/crm",
+          "name": "CRM",
+          "slug": "dashboard-crm"
+        },
+        {
+          "url": "app/ecommerce/dashboard",
+          "name": "eCommerce",
+          "slug": "app-ecommerce-dashboard"
+        },
+        {
+          "url": "app/logistics/dashboard",
+          "name": "Logistics",
+          "slug": "app-logistics-dashboard"
+        },
+        {
+          "url": "app/academy/dashboard",
+          "name": "Academy",
+          "slug": "app-academy-dashboard"
+        }
+      ]
+    },
+    {
+      "url": "/ammavaru-idols",
+      "name": "Ammavaru Idols",
+      "icon": "menu-icon tf-icons ti ti`-lifebuoy",
+      "slug": "ammavaru-idols"
+    },
+    {
+      "url": "/testimonials",
+      "name": "Testimonials",
+      "icon": "menu-icon tf-icons ti ti-lifebuoy",
+      "slug": "ammavaru-idols"
+    },
+    {
+      "url": "/settings",
+      "name": "Settings",
+      "icon": "menu-icon tf-icons ti ti-manual-gearbox",
+      "slug": "group.list"
+    }
+  ]
+}

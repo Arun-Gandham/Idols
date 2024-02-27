@@ -92,18 +92,59 @@
                         <div class="col-md-3">
                             <div class="image-outer">
                                 <label for="imageUpload" id="uploadButton" class="button">Profile Picture</label>
-                                <input type="file" id="imageUpload" accept="image/*" style="display: none;" required>
+                                <input type="file" id="imageUpload" name="photo" accept="image/*"
+                                    style="display: none;" required>
                                 <div id="imagePreview" class="image-preview"></div>
                             </div>
                         </div>
                         <div class="col-md-9">
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label class="col-sm-3 col-form-label" for="multicol-username">User Name</label>
+                                    <label class="col-sm-3 col-form-label" for="multicol-username">Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="multicol-username" class="form-control" placeholder="Name"
+                                            name="name" value="{{ isset($user) ? $user->name : '' }}" required>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <label class="col-sm-3 col-form-label" for="multicol-username">Role</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-select" id="basic-default-country" required="">
+                                            <option value="">Select Country</option>
+                                            <option value="usa">USA</option>
+                                            <option value="uk">UK</option>
+                                            <option value="france">France</option>
+                                            <option value="australia">Australia</option>
+                                            <option value="spain">Spain</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <label class="col-sm-3 col-form-label" for="multicol-username">Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="hidden" name="id" value="{{ isset($user) ? $user->id : '' }}">
+                                        <input type="text" id="multicol-username" class="form-control"
+                                            placeholder="password" name="password" {{ isset($user) ? '' : 'required' }}>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="col-sm-3 col-form-label" for="multicol-username">Age</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" id="multicol-username" class="form-control" placeholder="Age"
+                                            name="age" value="{{ isset($user) ? $user->name : '' }}" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="col-sm-3 col-form-label" for="multicol-username">Phone</label>
                                     <div class="col-sm-9">
                                         <input type="text" id="multicol-username" class="form-control"
-                                            placeholder="User Name" name="username"
-                                            value="{{ isset($user) ? $user->name : '' }}" required>
+                                            placeholder="Phone" name="phone" value="{{ isset($user) ? $user->name : '' }}"
+                                            required>
                                     </div>
                                 </div>
 
@@ -117,14 +158,22 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="col-sm-3 col-form-label" for="multicol-username">Password</label>
-                                    <div class="col-sm-9">
-                                        <input type="hidden" name="id" value="{{ isset($user) ? $user->id : '' }}">
-                                        <input type="text" id="multicol-username" class="form-control"
-                                            placeholder="password" name="password" {{ isset($user) ? '' : 'required' }}>
+                                    {{-- <label class="col-sm-3 col-form-label" for="multicol-username">Status</label> --}}
+                                    <div class="col-sm-9 mt-3">
+                                        <label class="switch switch-success">
+                                            <input type="checkbox" class="switch-input" name="status" checked />
+                                            <span class="switch-toggle-slider">
+                                                <span class="switch-on">
+                                                    <i class="ti ti-check"></i>
+                                                </span>
+                                                <span class="switch-off">
+                                                    <i class="ti ti-x"></i>
+                                                </span>
+                                            </span>
+                                            <span class="switch-label">Status</span>
+                                        </label>
                                     </div>
                                 </div>
-
                                 <div class="pt-4">
                                     <div class="row justify-content-start">
                                         <div class="col-sm-9">
@@ -135,6 +184,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>

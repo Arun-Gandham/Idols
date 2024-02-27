@@ -29,19 +29,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/user-profile', [ProfileController::class, 'getProfile'])->name('user.profile.view');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-
-    Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.submit');
-
-    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-
-    Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.submit');
-
+    
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 
@@ -84,4 +78,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/reset-password', [PasswordResetLinkController::class, 'passwordResetConfirm'])->name('password.reset.comfirm');
 
     Route::post('/reset-password/submit', [PasswordResetLinkController::class, 'passwordResetConfirmSubmit'])->name('password.reset.comfirm.submit');
+
+});
+
+
+    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+
+    Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.submit');
+
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+
+    Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.submit');
+
 require __DIR__.'/auth.php';

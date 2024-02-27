@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 /*
@@ -34,45 +34,31 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 
+    // Dashboard
+
     Route::get('/dashboard', [DashboardController::class, 'Home'])->name('dashboard');
 
-    //Admins
+    //User
 
-    Route::get('/admins', [AdminController::class, 'List'])->name('admin.list');
+    Route::get('/users', [UserController::class, 'List'])->name('users.list');
 
-    Route::get('/admins/add', [AdminController::class, 'add'])->name('admin.add');
+    Route::get('/users/add', [UserController::class, 'add'])->name('users.add');
 
-    Route::post('/admins/add/submit', [AdminController::class, 'addSubmit'])->name('admin.add.submit');
+    Route::post('/users/add/submit', [UserController::class, 'addSubmit'])->name('users.add.submit');
 
-    Route::get('/admins/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
 
-    Route::post('/admins/edit/submit', [AdminController::class, 'editSubmit'])->name('admin.edit.submit');
+    Route::post('/users/edit/submit', [UserController::class, 'editSubmit'])->name('users.edit.submit');
 
-    Route::get('/admins/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
+    Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('users.delete');
 
-    Route::get('/admins/datatables', [AdminController::class, 'datatblesList'])->name('admin.list.datatbles');
+    Route::get('/users/datatables', [UserController::class, 'datatblesList'])->name('users.list.datatbles');
     
-    // Groups
 
-    Route::get('/groups', [GroupController::class, 'List'])->name('group.list');
-
-    Route::get('/groups/datatables', [GroupController::class, 'datatblesList'])->name('group.list.datatbles');
-
-    Route::get('/groups/add', [GroupController::class, 'add'])->name('group.add');
-
-    Route::post('/groups/add/submit', [GroupController::class, 'addSubmit'])->name('group.add.submit');
-
-    Route::get('/groups/edit/{id}', [GroupController::class, 'edit'])->name('group.edit');
-
-    Route::post('/groups/edit/submit', [GroupController::class, 'editSubmit'])->name('group.edit.submit');
-
-    Route::get('/groups/delete/{id}', [GroupController::class, 'delete'])->name('group.delete');
-
+    // forgot password
     Route::post('/forgot-password/submit', [PasswordResetLinkController::class, 'passwordResetSubmit'])->name('password.reset.submit');
 
     Route::get('/reset-password', [PasswordResetLinkController::class, 'passwordResetConfirm'])->name('password.reset.comfirm');

@@ -7,10 +7,10 @@
       "slug": "dashboard"
     },
     {
-      "url": "/admins",
+      "url": "/users",
       "name": "Users",
       "icon": "menu-icon tf-icons ti ti-users",
-      "slug": "admin.list"
+      "slug": "users.list"
     },
     {
       "url": "/ganesh-idols",

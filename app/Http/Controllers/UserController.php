@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Yajra\DataTables\Facades\DataTables;
 
-class AdminController extends Controller
+use Illuminate\Http\Request;
+use App\Models\User;
+
+class UserController extends Controller
 {
     public function List()
     {
@@ -75,7 +75,16 @@ class AdminController extends Controller
         }
 
         $users = User::create(
-            ['name' => $req->username, 'email' => $req->email, 'password' => $req->password]
+            [
+            'name' => $req->name, 
+            'email' => $req->email, 
+            'password' => $req->password,
+            'photo' => $req->name, 
+            'age' => $req->age, 
+            'phone' => $req->phone,
+            'is_active' => isset($req->role_id) ? 1 : 0, 
+            'role_id' => $req->role_id,
+            ]
         );
 
         if($users)
@@ -86,20 +95,5 @@ class AdminController extends Controller
         {
             return redirect()->route('admin.list')->with('error','Something went wrong');
         }
-    }
-
-    public function datatblesList(Request $request)
-    {
-        $data = User::select(['id', 'name', 'email'])->where('id','!=',1)->orderBy('id','desc'); // Replace with your model and desired columns
-        return DataTables::of($data)
-        ->addColumn('actions', function(User $user) {
-                    return '<div class="d-flex">
-                    <a href="'.route('admin.delete',$user->id).'" class="mx-2"><i class="fa-solid fa-trash"></i></a>
-                    <span class="border border-right-0 border-light"></span>
-                    <a href="'.route('admin.edit',$user->id).'" class="mx-2"><i class="fa-solid fa-edit"></i></a>
-                    </div>';
-                })
-                ->rawColumns(['actions'])
-                ->make(true);
     }
 }

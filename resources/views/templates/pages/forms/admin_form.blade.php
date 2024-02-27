@@ -86,7 +86,7 @@
         <div class="col">
             <div class="card mb-4">
                 <form class="card-body" method="POST"
-                    action="{{ isset($user) ? route('admin.edit.submit') : route('admin.add.submit') }}">
+                    action="{{ isset($user) ? route('users.edit.submit') : route('users.add.submit') }}">
                     @csrf
                     <div class="row">
                         <div class="col-md-3">
@@ -106,23 +106,19 @@
                                             name="name" value="{{ isset($user) ? $user->name : '' }}" required>
                                     </div>
                                 </div>
-
-
                                 <div class="col-md-6">
                                     <label class="col-sm-3 col-form-label" for="multicol-username">Role</label>
                                     <div class="col-sm-9">
-                                        <select class="form-select" id="basic-default-country" required="">
+                                        <select class="form-select" id="basic-default-country" name="role_id" required="">
                                             <option value="">Select Country</option>
-                                            <option value="usa">USA</option>
-                                            <option value="uk">UK</option>
-                                            <option value="france">France</option>
-                                            <option value="australia">Australia</option>
-                                            <option value="spain">Spain</option>
+                                            <option value="1">USA</option>
+                                            <option value="1">UK</option>
+                                            <option value="1">France</option>
+                                            <option value="1">Australia</option>
+                                            <option value="1">Spain</option>
                                         </select>
                                     </div>
                                 </div>
-
-
                                 <div class="col-md-6">
                                     <label class="col-sm-3 col-form-label" for="multicol-username">Password</label>
                                     <div class="col-sm-9">
@@ -180,7 +176,7 @@
                                             <button type="submit"
                                                 class="btn btn-primary me-sm-2 me-1 waves-effect waves-light">{{ isset($user) ? 'Update' : 'Submit' }}</button>
                                             <button class="btn btn-label-secondary waves-effect"><a
-                                                    href="{{ route('admin.list') }}">Cancel</a></button>
+                                                    href="{{ route('users.list') }}">Cancel</a></button>
                                         </div>
                                     </div>
                                 </div>

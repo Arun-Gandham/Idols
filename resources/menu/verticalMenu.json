@@ -1,132 +1,124 @@
 {
-  "menu": [
-    {
-      "url": "/dashboard",
-      "name": "Dashboard",
-      "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "dashboard"
-    },
-    {
-      "url": "/users",
-      "name": "Users",
-      "icon": "menu-icon tf-icons ti ti-users",
-      "slug": "users",
-      "submenu": [
+    "menu": [
         {
-          "url": "users",
-          "name": "List",
-          "slug": "users.list"
+            "url": "/dashboard",
+            "name": "Dashboard",
+            "icon": "menu-icon tf-icons ti ti-smart-home",
+            "slug": "dashboard"
         },
         {
-          "url": "users/add",
-          "name": "Add",
-          "slug": "users.add"
+            "url": "/users",
+            "name": "Users",
+            "icon": "menu-icon tf-icons ti ti-users",
+            "slug": "users",
+            "submenu": [
+                {
+                    "url": "users",
+                    "name": "List",
+                    "slug": "users.list"
+                },
+                {
+                    "url": "users/add",
+                    "name": "Add",
+                    "slug": "users.add"
+                }
+            ]
+        },
+        {
+            "url": "/product",
+            "name": "Products",
+            "icon": "menu-icon tf-icons ti ti-files",
+            "slug": "product",
+            "submenu": [
+                {
+                    "url": "product",
+                    "name": "List",
+                    "slug": "product.list"
+                },
+                {
+                    "url": "product/add",
+                    "name": "Add",
+                    "slug": "product.add"
+                }
+            ]
+        },
+        {
+            "url": "/type",
+            "name": "Types",
+            "icon": "menu-icon tf-icons ti ti-lifebuoy",
+            "slug": "type",
+            "submenu": [
+                {
+                    "url": "type",
+                    "name": "List",
+                    "slug": "type.list"
+                },
+                {
+                    "url": "type/add",
+                    "name": "Add",
+                    "slug": "type.add"
+                }
+            ]
+        },
+        {
+            "url": "/feet",
+            "name": "Feet",
+            "icon": "menu-icon tf-icons ti ti-lifebuoy",
+            "slug": "feet",
+            "submenu": [
+                {
+                    "url": "feet",
+                    "name": "List",
+                    "slug": "feet.list"
+                },
+                {
+                    "url": "feet/add",
+                    "name": "Add",
+                    "slug": "feet.add"
+                }
+            ]
+        },
+        {
+            "url": "/testimonials",
+            "name": "Testimonials",
+            "icon": "menu-icon tf-icons ti ti-lifebuoy",
+            "slug": "ammavaru-idols",
+            "submenu": [
+                {
+                    "url": "users",
+                    "name": "List",
+                    "slug": "users.list"
+                },
+                {
+                    "url": "users/add",
+                    "name": "Add",
+                    "slug": "users.add"
+                }
+            ]
+        },
+        {
+            "url": "/role",
+            "name": "Roles",
+            "icon": "menu-icon tf-icons ti ti-lifebuoy",
+            "slug": "role",
+            "submenu": [
+                {
+                    "url": "role",
+                    "name": "List",
+                    "slug": "role.list"
+                },
+                {
+                    "url": "role/add",
+                    "name": "Add",
+                    "slug": "role.add"
+                }
+            ]
+        },
+        {
+            "url": "/settings",
+            "name": "Settings",
+            "icon": "menu-icon tf-icons ti ti-manual-gearbox",
+            "slug": "group.list"
         }
-      ]
-    },
-    {
-      "url": "/ganesh-idols",
-      "name": "Ganesh Idols",
-      "icon": "menu-icon tf-icons ti ti-files",
-      "slug": "ganesh-idols",
-      "submenu": [
-        {
-          "url": "/",
-          "name": "Analytics",
-          "slug": "dashboard-analytics"
-        },
-        {
-          "url": "dashboard/crm",
-          "name": "CRM",
-          "slug": "dashboard-crm"
-        },
-        {
-          "url": "app/ecommerce/dashboard",
-          "name": "eCommerce",
-          "slug": "app-ecommerce-dashboard"
-        },
-        {
-          "url": "app/logistics/dashboard",
-          "name": "Logistics",
-          "slug": "app-logistics-dashboard"
-        },
-        {
-          "url": "app/academy/dashboard",
-          "name": "Academy",
-          "slug": "app-academy-dashboard"
-        }
-      ]
-    },
-    {
-      "url": "/ammavaru-idols",
-      "name": "Ammavaru Idols",
-      "icon": "menu-icon tf-icons ti ti-lifebuoy",
-      "slug": "ammavaru-idols"
-    },
-    {
-      "url": "/type",
-      "name": "Types",
-      "icon": "menu-icon tf-icons ti ti-lifebuoy",
-      "slug": "type",
-      "submenu": [
-        {
-          "url": "type",
-          "name": "List",
-          "slug": "type.list"
-        },
-        {
-          "url": "type/add",
-          "name": "Add",
-          "slug": "type.add"
-        }
-      ]
-    },
-    {
-      "url": "/feet",
-      "name": "Feet",
-      "icon": "menu-icon tf-icons ti ti-lifebuoy",
-      "slug": "feet",
-      "submenu": [
-        {
-          "url": "feet",
-          "name": "List",
-          "slug": "feet.list"
-        },
-        {
-          "url": "feet/add",
-          "name": "Add",
-          "slug": "feet.add"
-        }
-      ]
-    },
-    {
-      "url": "/testimonials",
-      "name": "Testimonials",
-      "icon": "menu-icon tf-icons ti ti-lifebuoy",
-      "slug": "ammavaru-idols"
-    },{
-      "url": "/role",
-      "name": "Roles",
-      "icon": "menu-icon tf-icons ti ti-lifebuoy",
-      "slug": "role",
-      "submenu": [
-        {
-          "url": "role",
-          "name": "List",
-          "slug": "role.list"
-        },
-        {
-          "url": "role/add",
-          "name": "Add",
-          "slug": "role.add"
-        }
-      ]
-    },
-    {
-      "url": "/settings",
-      "name": "Settings",
-      "icon": "menu-icon tf-icons ti ti-manual-gearbox",
-      "slug": "group.list"
-    }
-  ]
+    ]
 }

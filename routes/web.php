@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductFeetController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 /*
 |--------------------------------------------------------------------------
@@ -106,6 +107,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/role/delete/{id}', [RoleController::class, 'delete'])->name('role.delete');
 
 
+    // Product
+
+    Route::get('/product', [ProductController::class, 'List'])->name('product.list');
+
+    Route::get('/product/add', [ProductController::class, 'add'])->name('product.add');
+
+    Route::post('/product/add/submit', [ProductController::class, 'addSubmit'])->name('product.add.submit');
+
+    Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+
+    Route::post('/product/edit/submit', [ProductController::class, 'editSubmit'])->name('product.edit.submit');
+
+    Route::get('/product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
 
 
 

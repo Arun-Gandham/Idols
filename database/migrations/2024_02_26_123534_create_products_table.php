@@ -16,10 +16,11 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description')->nullable();
             $table->unsignedBigInteger('feet_id')->nullable();
-            $table->foreign('feet_id')->references('id')->on('feet')->onDelete('cascade')->nullable();
+            $table->foreign('feet_id')->references('id')->on('product_feets')->onDelete('cascade')->nullable();
             $table->string('price')->nullable();
-            $table->string('thumbnail');
+            $table->string('thumbnail')->nullable();
             $table->text('images')->nullable();
             $table->string('body_color')->nullable();
             $table->string('pancha_saree_color')->nullable();

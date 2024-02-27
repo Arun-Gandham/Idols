@@ -88,21 +88,21 @@
         <div class="col">
             <div class="card mb-4">
                 <form class="card-body" method="POST"
-                    action="{{ isset($user) ? route('product.edit.submit') : route('product.add.submit') }}"
+                    action="{{ isset($product) ? route('product.edit.submit') : route('product.add.submit') }}"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-3">
                             <div class="image-outer">
                                 <label for="imageUpload" id="uploadButton"
-                                    style="{{ isset($user->thumbnail) ? 'display:none' : '' }}" class="button">Upload
+                                    style="{{ isset($product->thumbnail) ? 'display:none' : '' }}" class="button">Upload
                                     Profile Picture</label>
                                 <input type="file" id="imageUpload" name="thumbnail" accept="image/*"
-                                    style="display: none;" {{ !isset($user) ? 'required' : '' }}>
+                                    style="display: none;" {{ !isset($product) ? 'required' : '' }}>
                                 <div id="imagePreview" class="image-preview">
-                                    @if (isset($user) && $user->thumbnail)
+                                    @if (isset($product) && $product->thumbnail)
                                         <div class='d-flex flex-column'>
-                                            <img src="{{ asset($user->thumbnail) }}" alt="Image Preview"
+                                            <img src="{{ asset($product->thumbnail) }}" alt="Image Preview"
                                                 style="max-width: 100%; max-height: 200px;">
                                             <label for="imageUpload" id="uploadButton" class="button">Upload Profile
                                                 Picture</label>
@@ -117,7 +117,7 @@
                                     <label class=" col-sm-3 col-md-12 col-form-label" for="multicol-username">Name</label>
                                     <div class="col-sm-11">
                                         <input type="text" class="form-control" placeholder="Name" name="name"
-                                            value="{{ isset($user) ? $user->name : '' }}" required>
+                                            value="{{ isset($product) ? $product->name : '' }}" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -125,7 +125,8 @@
                                     <div class="col-sm-11">
                                         <select class="form-select" name="feet_id" required="">
                                             @foreach ($feets as $feet)
-                                                <option {{ isset($user) && $feet->id === $user->role_id ? 'selected' : '' }}
+                                                <option
+                                                    {{ isset($product) && $feet->id === $product->feet_id ? 'selected' : '' }}
                                                     value="{{ $feet->id }}">{{ $feet->feet }}</option>
                                             @endforeach
                                         </select>
@@ -137,7 +138,7 @@
                                         <select class="form-select" name="type_id" required="">
                                             @foreach ($types as $type)
                                                 <option
-                                                    {{ isset($user) && $type->id === $user->role_id ? 'selected' : '' }}
+                                                    {{ isset($product) && $type->id === $product->type_id ? 'selected' : '' }}
                                                     value="{{ $type->id }}">{{ $type->name }}</option>
                                             @endforeach
                                         </select>
@@ -148,7 +149,7 @@
                                     <label class=" col-sm-3 col-md-12 col-form-label" for="multicol-username">Price</label>
                                     <div class="col-sm-11">
                                         <input type="number" class="form-control" placeholder="Price" name="price"
-                                            value="{{ isset($user) ? $user->age : '' }}" required>
+                                            value="{{ isset($product) ? $product->price : '' }}" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -156,7 +157,8 @@
                                         Color</label>
                                     <div class="col-sm-11">
                                         <input type="text" class="form-control" placeholder="Body Color"
-                                            name="body_color" value="{{ isset($user) ? $user->phone : '' }}" required>
+                                            name="body_color" value="{{ isset($product) ? $product->body_color : '' }}"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -164,8 +166,8 @@
                                         Color</label>
                                     <div class="col-sm-11">
                                         <input type="text" class="form-control" placeholder="Pancha/Saree Color"
-                                            name="pancha_saree_color" value="{{ isset($user) ? $user->phone : '' }}"
-                                            required>
+                                            name="pancha_saree_color"
+                                            value="{{ isset($product) ? $product->pancha_saree_color : '' }}" required>
                                     </div>
                                 </div>
 
@@ -173,7 +175,7 @@
                                     <label class="col-sm-12 col-form-label" for="multicol-username">Count</label>
                                     <div class="col-sm-11">
                                         <input type="number" class="form-control" placeholder="Count" name="count"
-                                            value="{{ isset($user) ? $user->phone : '' }}" required>
+                                            value="{{ isset($product) ? $product->count : '' }}" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -187,14 +189,14 @@
                                 <div class="col-md-12">
                                     <label class="col-sm-12 col-form-label" for="multicol-username">Description</label>
                                     <div class="col-sm-11">
-                                        <textarea class="form-control" placeholder="Say it" rows="3" required></textarea>
+                                        <textarea class="form-control" placeholder="Say it" rows="3" required name="description">{{ isset($product) ? $product->description : '' }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="col-sm-9 mt-3">
                                         <label class="switch switch-success">
                                             <input type="checkbox" class="switch-input" name="status"
-                                                {{ isset($user) ? ($user->is_active === 1 ? 'checked' : '') : 'checked' }} />
+                                                {{ isset($product) ? ($product->status === 1 ? 'checked' : '') : 'checked' }} />
                                             <span class="switch-toggle-slider">
                                                 <span class="switch-on">
                                                     <i class="ti ti-check"></i>
@@ -211,7 +213,7 @@
                                     <div class="row justify-content-start">
                                         <div class="col-sm-11">
                                             <button type="submit"
-                                                class="btn btn-primary me-sm-2 me-1 waves-effect waves-light">{{ isset($user) ? 'Update' : 'Submit' }}</button>
+                                                class="btn btn-primary me-sm-2 me-1 waves-effect waves-light">{{ isset($product) ? 'Update' : 'Submit' }}</button>
                                             <button class="btn btn-label-secondary waves-effect" type="button"><a
                                                     href="{{ route('users.list') }}">Cancel</a></button>
                                         </div>

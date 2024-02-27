@@ -60,8 +60,31 @@ class ProductController extends Controller
 
     public function addSubmit(Request $req)
     {
-        $InsertData['feet'] = $req->feet;
-        $feet = Product::create($InsertData);
+        return $req->all();
+
+        $InsertData['name'] = $req->name;
+        $InsertData['feet'] = $req->feet_id;
+        $InsertData['price'] = $req->price;
+        // $InsertData['thumbnail'] = $req->age;
+        // $InsertData['images'] = $req->phone;
+        $InsertData['body_color'] = $req->body_color;
+        $InsertData['pancha_saree_color'] = $req->pancha_saree_color;
+        $InsertData['type_id'] = $req->type_id;
+        $InsertData['created_by'] = auth()->user()->id;
+        $InsertData['model'] = $req->age;
+        $InsertData['status'] = $req->status ? 1 : 0;
+        $InsertData['count'] = $req->count;
+
+        if ($req->hasFile('photo')) {
+            if ($uploadStatus = $this->uploadFile("uploads/users/profiles", $req->file('photo'), time())) {
+                $InsertData['photo'] = $uploadStatus;
+            } else {
+                throw new Exception('Failed to upload profile picture', 500);
+            }
+        }
+
+
+        $users = User::create($InsertData);
 
         if ($feet) {
             return redirect()->route('feet.list')->with('success', 'Succesfully created');

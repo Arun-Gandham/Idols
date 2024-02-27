@@ -8,7 +8,7 @@
     },
     {
       "url": "/admins",
-      "name": "Administrators",
+      "name": "Users",
       "icon": "menu-icon tf-icons ti ti-users",
       "slug": "admin.list"
     },
@@ -48,8 +48,20 @@
     {
       "url": "/ammavaru-idols",
       "name": "Ammavaru Idols",
-      "icon": "menu-icon tf-icons ti ti`-lifebuoy",
+      "icon": "menu-icon tf-icons ti ti-lifebuoy",
       "slug": "ammavaru-idols"
+    },
+    {
+      "url": "/types",
+      "name": "Types",
+      "icon": "menu-icon tf-icons ti ti-lifebuoy",
+      "slug": "types"
+    },
+    {
+      "url": "/feet",
+      "name": "Feet",
+      "icon": "menu-icon tf-icons ti ti-lifebuoy",
+      "slug": "feet"
     },
     {
       "url": "/testimonials",

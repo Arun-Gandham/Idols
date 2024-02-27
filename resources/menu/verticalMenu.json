@@ -10,7 +10,19 @@
       "url": "/users",
       "name": "Users",
       "icon": "menu-icon tf-icons ti ti-users",
-      "slug": "users.list"
+      "slug": "users",
+      "submenu": [
+        {
+          "url": "users",
+          "name": "List",
+          "slug": "users.list"
+        },
+        {
+          "url": "users/add",
+          "name": "Add",
+          "slug": "users.add"
+        }
+      ]
     },
     {
       "url": "/ganesh-idols",
@@ -52,22 +64,63 @@
       "slug": "ammavaru-idols"
     },
     {
-      "url": "/types",
+      "url": "/type",
       "name": "Types",
       "icon": "menu-icon tf-icons ti ti-lifebuoy",
-      "slug": "types"
+      "slug": "type",
+      "submenu": [
+        {
+          "url": "type",
+          "name": "List",
+          "slug": "type.list"
+        },
+        {
+          "url": "type/add",
+          "name": "Add",
+          "slug": "type.add"
+        }
+      ]
     },
     {
       "url": "/feet",
       "name": "Feet",
       "icon": "menu-icon tf-icons ti ti-lifebuoy",
-      "slug": "feet"
+      "slug": "feet",
+      "submenu": [
+        {
+          "url": "feet",
+          "name": "List",
+          "slug": "feet.list"
+        },
+        {
+          "url": "feet/add",
+          "name": "Add",
+          "slug": "feet.add"
+        }
+      ]
     },
     {
       "url": "/testimonials",
       "name": "Testimonials",
       "icon": "menu-icon tf-icons ti ti-lifebuoy",
       "slug": "ammavaru-idols"
+    },{
+      "url": "/role",
+      "name": "Roles",
+      "icon": "menu-icon tf-icons ti ti-lifebuoy",
+      "slug": "role",
+      "submenu": [
+        {
+          "url": "role",
+          "name": "List",
+          "slug": "role.list"
+        },
+        {
+          "url": "role/add",
+          "name": "Add",
+          "slug": "role.add"
+        }
+      ]
     },
     {
       "url": "/settings",

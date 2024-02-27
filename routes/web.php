@@ -6,7 +6,9 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\GroupController;
+use App\Http\Controllers\ProductFeetController;
+use App\Http\Controllers\ProductTypeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 /*
 |--------------------------------------------------------------------------
@@ -29,13 +31,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/user-profile', [ProfileController::class, 'getProfile'])->name('user.profile.view');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
+        ->name('logout');
 
     // Dashboard
 
@@ -47,6 +48,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/users/add', [UserController::class, 'add'])->name('users.add');
 
+    Route::get('/users/profile/{id}', [UserController::class, 'viewUserProfile'])->name('user.profile.view');
+
     Route::post('/users/add/submit', [UserController::class, 'addSubmit'])->name('users.add.submit');
 
     Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
@@ -55,8 +58,56 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('users.delete');
 
-    Route::get('/users/datatables', [UserController::class, 'datatblesList'])->name('users.list.datatbles');
-    
+
+
+    // Product Feet
+
+    Route::get('/feet', [ProductFeetController::class, 'List'])->name('feet.list');
+
+    Route::get('/feet/add', [ProductFeetController::class, 'add'])->name('feet.add');
+
+    Route::post('/feet/add/submit', [ProductFeetController::class, 'addSubmit'])->name('feet.add.submit');
+
+    Route::get('/feet/edit/{id}', [ProductFeetController::class, 'edit'])->name('feet.edit');
+
+    Route::post('/feet/edit/submit', [ProductFeetController::class, 'editSubmit'])->name('feet.edit.submit');
+
+    Route::get('/feet/delete/{id}', [ProductFeetController::class, 'delete'])->name('feet.delete');
+
+
+
+    // Product Type
+
+    Route::get('/type', [ProductTypeController::class, 'List'])->name('type.list');
+
+    Route::get('/type/add', [ProductTypeController::class, 'add'])->name('type.add');
+
+    Route::post('/type/add/submit', [ProductTypeController::class, 'addSubmit'])->name('type.add.submit');
+
+    Route::get('/type/edit/{id}', [ProductTypeController::class, 'edit'])->name('type.edit');
+
+    Route::post('/type/edit/submit', [ProductTypeController::class, 'editSubmit'])->name('type.edit.submit');
+
+    Route::get('/type/delete/{id}', [ProductTypeController::class, 'delete'])->name('type.delete');
+
+
+    // User Roles
+
+    Route::get('/role', [RoleController::class, 'List'])->name('role.list');
+
+    Route::get('/role/add', [RoleController::class, 'add'])->name('role.add');
+
+    Route::post('/role/add/submit', [RoleController::class, 'addSubmit'])->name('role.add.submit');
+
+    Route::get('/role/edit/{id}', [RoleController::class, 'edit'])->name('role.edit');
+
+    Route::post('/role/edit/submit', [RoleController::class, 'editSubmit'])->name('role.edit.submit');
+
+    Route::get('/role/delete/{id}', [RoleController::class, 'delete'])->name('role.delete');
+
+
+
+
 
     // forgot password
     Route::post('/forgot-password/submit', [PasswordResetLinkController::class, 'passwordResetSubmit'])->name('password.reset.submit');
@@ -64,16 +115,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/reset-password', [PasswordResetLinkController::class, 'passwordResetConfirm'])->name('password.reset.comfirm');
 
     Route::post('/reset-password/submit', [PasswordResetLinkController::class, 'passwordResetConfirmSubmit'])->name('password.reset.comfirm.submit');
-
 });
 
 
-    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
-    Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.submit');
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.submit');
 
-    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 
-    Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.submit');
+Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.submit');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

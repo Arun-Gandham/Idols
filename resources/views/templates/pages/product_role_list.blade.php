@@ -48,9 +48,9 @@
 
     <div class="d-flex justify-content-between">
         <h4 class="py-3 mb-3">
-            <span class="text-muted fw-light">Groups /</span> List
+            <span class="text-muted fw-light">Role/</span> List
         </h4>
-        <a href="{{ route('group.add') }}"><button class="btn btn-primary mt-2" style="padding: 15px;height: 30px;"><i
+        <a href="{{ route('role.add') }}"><button class="btn btn-primary mt-2" style="padding: 15px;height: 30px;"><i
                     class="fa-solid fa-plus"></i>
                 Add</button></a>
     </div>
@@ -62,45 +62,21 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Game</th>
-                        <th>Participants</th>
-                        <th>Frontend Link</th>
-                        <th>Scores</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
+                <tbody>
+                    @foreach($roles as $role)
+                        <tr>
+                            <td>{{ $role->name }}</td>
+                            <td>
+                                <a href="{{ route('role.edit',['id' => $role->id]) }}" class="text-success me-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ route('role.delete',['id' => $role->id]) }}" class="text-danger ms-2"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
         </div>
     </div>
-
-    <!--/ DataTable with Buttons -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#data-table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: '{{ route('group.list.datatbles') }}',
-                columns: [{
-                        data: 'name'
-                    },
-                    {
-                        data: 'game_id'
-                    },
-                    {
-                        data: 'p_count'
-                    },
-                    {
-                        data: 'link'
-                    },
-                    {
-                        data: 'scores'
-                    },
-                    {
-                        data: 'actions'
-                    }
-                ]
-            });
-        });
-    </script>
 @endsection

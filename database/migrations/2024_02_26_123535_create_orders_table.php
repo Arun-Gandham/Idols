@@ -23,11 +23,12 @@ class CreateOrdersTable extends Migration
             $table->string('phone1');
             $table->string('phone2');
             $table->integer('price');
-            $table->integer('advance');
             $table->integer('cover_price');
             $table->integer('crane_price');
             $table->text('note');
             $table->integer('model');
+            $table->unsignedBigInteger('status_id')->nullable();
+            $table->foreign('status_id')->references('id')->on('order_statuses')->onDelete('cascade')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade')->nullable();
             $table->timestamps();

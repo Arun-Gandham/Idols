@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'DataTables - Tables')
+@section('title', isset($pageSettings['title']) ? $pageSettings['title'] : "Users List")
 
 @section('content')
 <style>

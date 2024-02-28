@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'DataTables - Tables')
+@section('title', isset($pageSettings['title']) ? $pageSettings['title'] : "Product Form")
 
 @section('content')
 
@@ -216,7 +216,7 @@
                                             <button type="submit"
                                                 class="btn btn-primary me-sm-2 me-1 waves-effect waves-light">{{ isset($product) ? 'Update' : 'Submit' }}</button>
                                             <button class="btn btn-label-secondary waves-effect" type="button"><a
-                                                    href="{{ route('users.list') }}">Cancel</a></button>
+                                                    href="{{ route('product.list') }}">Cancel</a></button>
                                         </div>
                                     </div>
                                 </div>

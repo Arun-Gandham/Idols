@@ -4,7 +4,7 @@ $configData = Helper::appClasses();
 
 @extends('layouts/layoutMaster')
 
-@section('title', isset($pageSettings['title']) ? $pageSettings['title'] : "Products List")
+@section('title', isset($pageSettings['title']) ? $pageSettings['title'] : "Deleted Products List")
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/nouislider/nouislider.css') }}" />
@@ -25,13 +25,6 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('content')
-<style>
-    .outer {
-        border: 2px dashed #dbdade;
-        border-radius: 10px;
-        height: 15rem;
-    }
-</style>
 @if ($error = session('error'))
 <div class="alert alert-danger d-flex align-items-center alert-dismissible" role="alert">
     {{ $error }}
@@ -47,33 +40,6 @@ $configData = Helper::appClasses();
 </div>
 @endif
 <div data-bs-spy="scroll" class="scrollspy-example">
-    <div class="mb-5">
-        <div class="card">
-            <div class="card-body py-3">
-                <div class="row">
-                    <div class="col-md-3 col-sm-12">
-                        <!-- <label class="form-label" for="multicol-country">Year</label> -->
-                        <select id="multicol-country" class="select2 form-select" data-allow-clear="true">
-                            <option value="" selected>All</option>
-                            <option value="2023">2023</option>
-                            <option value="2024">2024</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3 col-sm-12">
-                        <select id="multicol-country" class="select2 form-select" data-allow-clear="true">
-                            <option value="" selected>All</option>
-                            <option value="0">Active</option>
-                            <option value="1">Inactive</option>
-                        </select>
-                    </div>
-                    <div class="col-md-5 col-sm-0"></div>
-                    <div class="col-md-1 col-sm-12">
-                        <button type="button" class="btn btn-primary waves-effect waves-light w-100">Apply</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <section id="idols" class="landing-team">
         <div class="container">
             <div class="row gy-5 mt-2">
@@ -101,11 +67,6 @@ $configData = Helper::appClasses();
                     </a>
                 </div>
                 @endforeach
-                @if(!count($products))
-                <div class="col-12 d-flex justify-content-center outer align-items-center">
-                    <h1>No {{ isset($pageSettings['type']) ? $pageSettings['type'] : "" }} Data Available</h1>
-                </div>
-                @endif
             </div>
         </div>
     </section>

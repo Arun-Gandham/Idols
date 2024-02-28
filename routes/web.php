@@ -115,7 +115,17 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/product/{id}/delete', [ProductController::class, 'delete'])->name('product.delete');
 
+    Route::get('/product/deleted/list', [ProductController::class, 'deletedList'])->name('product.deleted.list');
+
+    Route::get('/product/{id}/restore', [ProductController::class, 'restore'])->name('product.restore');
+
     Route::get('/product/{id}/details', [ProductController::class, 'detailsView'])->name('product.details.view');
+
+    Route::get('/product/{id}/teams', [ProductController::class, 'teamsView'])->name('product.teams.view');
+
+    Route::get('/product/{id}/stock', [ProductController::class, 'stockView'])->name('product.stock.view');
+
+    Route::get('/product/{id}/other', [ProductController::class, 'otherView'])->name('product.other.view');
 
     // forgot password
     Route::post('/forgot-password/submit', [PasswordResetLinkController::class, 'passwordResetSubmit'])->name('password.reset.submit');

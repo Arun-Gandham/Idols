@@ -15,15 +15,27 @@ class ProductController extends Controller
 
     public function list()
     {
-        $products = Product::orderBy('id', 'ASC')->get();
-        return view('templates.pages.product_list', compact('products'));
+        $pageSettings['title'] = "Product List";
+        $pageSettings['type'] = "Product";
+        $products = Product::where('is_deleted',0)->orderBy('id', 'ASC')->get();
+        return view('templates.pages.product_list', compact('products','pageSettings'));
+    }
+
+    public function deletedList()
+    {
+        $pageSettings['title'] = "Deleted Product List";
+        $pageSettings['type'] = "Product";
+        $products = Product::where('is_deleted',1)->orderBy('id', 'ASC')->get();
+        return view('templates.pages.product_deleted_list', compact('products','pageSettings'));
     }
 
     public function add()
     {
+
+        $pageSettings['title'] = "Add Product";
         $types = ProductType::all();
         $feets = ProductFeet::all();
-        return view('templates.pages.forms.product_form', compact('types', 'feets'));
+        return view('templates.pages.forms.product_form', compact('types', 'feets','pageSettings'));
     }
 
     public function delete($id)
@@ -33,24 +45,22 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Product not found.');
         }
         $product->is_deleted = 1;
-        if($product->save())
-        {
-            return redirect('product.list')->with('success', 'Product deleted successfully');
+        if ($product->save()) {
+            return redirect()->route('product.list')->with('success', 'Product deleted successfully');
         }
-
-
         return redirect()->back()->with('error', 'Something went wrong');
     }
 
     public function edit($id)
     {
+        $pageSettings['title'] = "Edit Product";
         $product = Product::where('id', $id)->first();
         if (!$product) {
             return redirect()->back()->with('error', 'Product not exist!!!');
         }
         $types = ProductType::all();
         $feets = ProductFeet::all();
-        return view('templates.pages.forms.product_form', compact('product', 'types', 'feets'));
+        return view('templates.pages.forms.product_form', compact('product', 'types', 'feets','pageSettings'));
     }
 
     public function editSubmit(Request $req)
@@ -100,9 +110,9 @@ class ProductController extends Controller
                 $product->images = serialize($paths);
                 $product->save();
             }
-            return redirect()->route('product.list')->with('success', 'Succesfully product updated');
+            return redirect()->route('product.details.view',['id' => $product->id])->with('success', 'Succesfully product updated');
         }
-        return redirect()->route('product.list')->with('error', 'Something went wrong');
+        return redirect()->route('product.details.view',['id' => $product->id])->with('error', 'Something went wrong');
     }
 
     public function addSubmit(Request $req)
@@ -132,11 +142,8 @@ class ProductController extends Controller
                 $paths = [];
                 $count = 0;
                 foreach ($req->file('images') as $file) {
-                    // Generate unique filename
                     $filename = time() . '_' . $count . '_' . $file->getClientOriginalName();
-                    // Upload the new thumbnail
                     $file->move(public_path("uploads/products/{$product->id}"), $filename);
-                    // Update the product's thumbnail field
                     $paths[] = "uploads/{$product->id}/products/profiles/{$filename}";
                     $count++;
                 }
@@ -147,12 +154,57 @@ class ProductController extends Controller
         return redirect()->route('product.list')->with('success', 'Succesfully product created');
     }
 
-    public function detailsView($id)
+    public function restore($id)
     {
         $product = Product::where('id', $id)->first();
         if (!$product) {
             return redirect()->back()->with('error', 'Product not exist!!!');
         }
-        return view('templates.pages.product_view.details_view', compact('product'));
+        $product->is_deleted = 0;
+        if($product->save())
+        {
+            return redirect()->route('product.list')->with('success','Product restored successfully.');
+        }
+        return redirect()->back()->with('error','Something went wrong');
+    }
+
+    public function detailsView($id)
+    {
+        $pageSettings['title'] = "Product Details";
+        $product = Product::where('id', $id)->first();
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not exist!!!');
+        }
+        return view('templates.pages.product_view.details_view', compact('product','pageSettings'));
+    }
+
+    public function teamsView($id)
+    {
+        $pageSettings['title'] = "Product Details";
+        $product = Product::where('id', $id)->first();
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not exist!!!');
+        }
+        return view('templates.pages.product_view.teams_view', compact('product','pageSettings'));
+    }
+
+    public function stockView($id)
+    {
+        $pageSettings['title'] = "Product Details";
+        $product = Product::where('id', $id)->first();
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not exist!!!');
+        }
+        return view('templates.pages.product_view.stock_view', compact('product','pageSettings'));
+    }
+
+    public function otherView($id)
+    {
+        $pageSettings['title'] = "Product Details";
+        $product = Product::where('id', $id)->first();
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not exist!!!');
+        }
+        return view('templates.pages.product_view.other_view', compact('product','pageSettings'));
     }
 }

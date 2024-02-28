@@ -39,6 +39,44 @@
                     "url": "product/add",
                     "name": "Add",
                     "slug": "product.add"
+                },
+                {
+                    "url": "product/deleted/list",
+                    "name": "Trash",
+                    "slug": "product.deleted.list"
+                }
+            ]
+        },
+        {
+            "url": "/orders",
+            "name": "Orders",
+            "icon": "menu-icon tf-icons ti ti-files",
+            "slug": "order",
+            "submenu": [
+                {
+                    "url": "order",
+                    "name": "List",
+                    "slug": "order.list"
+                },
+                {
+                    "url": "order/add",
+                    "name": "Add",
+                    "slug": "order.add"
+                },
+                {
+                    "url": "order/advance/list",
+                    "name": "Advance",
+                    "slug": "order.advance.list"
+                },
+                {
+                    "url": "order/completed/list",
+                    "name": "Completed",
+                    "slug": "order.completed.list"
+                },
+                {
+                    "url": "order/completed/list",
+                    "name": "Trash",
+                    "slug": "order.deleted.list"
                 }
             ]
         },

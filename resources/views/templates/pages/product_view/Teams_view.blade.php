@@ -90,9 +90,9 @@
 <div class="row">
     <div class="col-md-12">
         <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-            <li class="nav-item"><a class="nav-link active" href="#page_top"><i class='ti-xs ti ti-user-check me-1'></i> Details</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('product.teams.view',['id' => $product->id ]) }}"><i class='ti-xs ti ti-users me-1'></i> Teams</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('product.stock.view',['id' => $product->id ]) }}"><i class='ti-xs ti ti-layout-grid me-1'></i> Stocks</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('product.details.view',['id' => $product->id ]) }}"><i class='ti-xs ti ti-user-check me-1'></i> Details</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#page_top"><i class='ti-xs ti ti-users me-1'></i> Teams</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('product.teams.view',['id' => $product->id ]) }}"><i class='ti-xs ti ti-layout-grid me-1'></i> Stocks</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('product.other.view',['id' => $product->id ]) }}"><i class='ti-xs ti ti-link me-1'></i> Other</a></li>
         </ul>
     </div>

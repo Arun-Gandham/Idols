@@ -104,4 +104,14 @@ class ProductController extends Controller
         return redirect()->route('product.list')->with('success', 'Succesfully product created');
 
     }
+
+    public function detailsView($id)
+    {
+        $product = Product::where('id', $id)->first();
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not exist!!!');
+        }
+        return view('templates.pages.product_view.details_view', compact('product'));
+
+    }
 }

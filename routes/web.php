@@ -1,16 +1,16 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductFeetController;
 use App\Http\Controllers\ProductTypeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +20,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     $pageConfigs = ['myLayout' => 'front'];
@@ -59,8 +59,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('users.delete');
 
-
-
     // Product Feet
 
     Route::get('/feet', [ProductFeetController::class, 'List'])->name('feet.list');
@@ -74,8 +72,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/feet/edit/submit', [ProductFeetController::class, 'editSubmit'])->name('feet.edit.submit');
 
     Route::get('/feet/delete/{id}', [ProductFeetController::class, 'delete'])->name('feet.delete');
-
-
 
     // Product Type
 
@@ -91,7 +87,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/type/delete/{id}', [ProductTypeController::class, 'delete'])->name('type.delete');
 
-
     // User Roles
 
     Route::get('/role', [RoleController::class, 'List'])->name('role.list');
@@ -105,7 +100,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/role/edit/submit', [RoleController::class, 'editSubmit'])->name('role.edit.submit');
 
     Route::get('/role/delete/{id}', [RoleController::class, 'delete'])->name('role.delete');
-
 
     // Product
 
@@ -121,7 +115,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
 
-
+    Route::get('/product/details/{id}', [ProductController::class, 'detailsView'])->name('product.details.view');
 
     // forgot password
     Route::post('/forgot-password/submit', [PasswordResetLinkController::class, 'passwordResetSubmit'])->name('password.reset.submit');
@@ -130,7 +124,6 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/reset-password/submit', [PasswordResetLinkController::class, 'passwordResetConfirmSubmit'])->name('password.reset.comfirm.submit');
 });
-
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 

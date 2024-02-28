@@ -29,7 +29,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade')->nullable();
             $table->integer('model');
-            $table->integer('count')->default(0);
+            $table->integer('stock')->default(0);
             $table->integer('status')->default(1);
             $table->timestamps();
         });

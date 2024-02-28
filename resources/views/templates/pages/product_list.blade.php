@@ -34,7 +34,7 @@
                     @endphp
                     @foreach ($products as $key => $product)
                         <div class="col-lg-4 col-sm-6 mt-5 mb-4">
-                            <a href="" class="">
+                            <a href="{{ route('product.details.view', ['id' => $product->id]) }}" class="">
                                 <div class="card mt-3 mt-lg-0 shadow-none">
                                     <div
                                         class="bg-label-{{ $classes[$key % count($classes)] }} position-relative team-image-box">
@@ -49,7 +49,8 @@
                                         <p class="text-muted mb-0">6 Feet</p>
                                         <p class="text-muted mb-0">Pancha: {{ $product->pancha_saree_color }}</p>
                                         <p class="text-muted mb-0">Body: {{ $product->body_color }}</p>
-                                        <p class="text-muted mb-0">Support: pillow</p>
+                                        <p class="text-muted mb-0 text-success">Status:
+                                            {{ $product->status === 1 ? 'Active' : 'Inactive' }}</p>
                                     </div>
                                 </div>
                             </a>

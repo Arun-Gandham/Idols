@@ -109,13 +109,13 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/product/add/submit', [ProductController::class, 'addSubmit'])->name('product.add.submit');
 
-    Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
 
     Route::post('/product/edit/submit', [ProductController::class, 'editSubmit'])->name('product.edit.submit');
 
-    Route::get('/product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+    Route::get('/product/{id}/delete', [ProductController::class, 'delete'])->name('product.delete');
 
-    Route::get('/product/details/{id}', [ProductController::class, 'detailsView'])->name('product.details.view');
+    Route::get('/product/{id}/details', [ProductController::class, 'detailsView'])->name('product.details.view');
 
     // forgot password
     Route::post('/forgot-password/submit', [PasswordResetLinkController::class, 'passwordResetSubmit'])->name('password.reset.submit');

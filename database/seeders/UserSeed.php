@@ -21,5 +21,17 @@ class UserSeed extends Seeder
             'phone' => '9121855669',
             'is_active' => 1
         ]);
+
+        DB::table('product_types')->insert([
+            'name' => 'Ganapathi'
+        ]);
+
+        DB::table('product_feets')->insert([
+            'feet' => 5
+        ]);
+
+        DB::table('roles')->insert([
+            'name' => 'User'
+        ]);
     }
 }

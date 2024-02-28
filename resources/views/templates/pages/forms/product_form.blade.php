@@ -172,17 +172,17 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-sm-12 col-form-label" for="multicol-username">Count</label>
+                                    <label class="col-sm-12 col-form-label" for="multicol-username">Stock</label>
                                     <div class="col-sm-11">
-                                        <input type="number" class="form-control" placeholder="Count" name="count"
-                                            value="{{ isset($product) ? $product->count : '' }}" required>
+                                        <input type="number" class="form-control" placeholder="Stock" name="stock"
+                                            value="{{ isset($product) ? $product->stock : '' }}" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-sm-12 col-form-label" for="multicol-username">Images</label>
                                     <div class="col-sm-11">
                                         <input type="file" multiple="multiple" accept="image/*" class="form-control"
-                                            name="images[]" required>
+                                            name="images[]">
                                     </div>
                                 </div>
 
@@ -212,6 +212,7 @@
                                 <div class="pt-4">
                                     <div class="row justify-content-start">
                                         <div class="col-sm-11">
+                                            <input type="hidden" name="id" value="{{ isset($product) ? $product->id : null }}">
                                             <button type="submit"
                                                 class="btn btn-primary me-sm-2 me-1 waves-effect waves-light">{{ isset($product) ? 'Update' : 'Submit' }}</button>
                                             <button class="btn btn-label-secondary waves-effect" type="button"><a

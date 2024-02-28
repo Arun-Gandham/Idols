@@ -29,11 +29,11 @@
             width: 100%;
         }
     </style>
-    <div class="card mb-4">
+    <div class="card mb-4" id="page_top">
         <div class="card-body">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 mt-auto mb-auto">
-                    <img src="http://127.0.0.1:8001/uploads/products/5/1709057432.png" class="max-width-idol"
+                    <img src="{{ asset($product->thumbnail) }}" class="max-width-idol"
                         alt="human image">
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 mt-auto">
@@ -42,17 +42,17 @@
                             <small class="card-text text-uppercase">About</small>
                             <ul class="list-unstyled mb-4 mt-3">
                                 <li class="d-flex align-items-center mb-3"><i class="ti ti-user text-heading"></i><span
-                                        class="fw-medium mx-2 text-heading">Full Name:</span> <span>Ganesh Idol</span></li>
+                                        class="fw-medium mx-2 text-heading">Full Name:</span> <span>{{ $product->name }}</span></li>
                                 <li class="d-flex align-items-center mb-3"><i class="ti ti-crown text-heading"></i><span
-                                        class="fw-medium mx-2 text-heading">Body Color:</span> <span>Cream</span></li>
+                                        class="fw-medium mx-2 text-heading">Body Color:</span> <span>{{ $product->body_color }}</span></li>
                                 <li class="d-flex align-items-center mb-3"><i class="ti ti-flag text-heading"></i><span
-                                        class="fw-medium mx-2 text-heading">Pancha/Saree Color:</span> <span>Yellow</span>
+                                        class="fw-medium mx-2 text-heading">Pancha/Saree Color:</span> <span>{{ $product->pancha_saree_color }}</span>
                                 </li>
                             </ul>
                             <small class="card-text text-uppercase">Stock</small>
                             <ul class="list-unstyled mb-4 mt-3">
                                 <li class="d-flex align-items-center mb-3"><i class="ti ti-phone-call"></i><span
-                                        class="fw-medium mx-2 text-heading">Total Stock:</span> <span>33</span></li>
+                                        class="fw-medium mx-2 text-heading">Total Stock:</span> <span>{{ $product->stock }}</span></li>
                                 <li class="d-flex align-items-center mb-3"><i class="ti ti-phone-call"></i><span
                                         class="fw-medium mx-2 text-heading">Available:</span> <span>33</span></li>
                                 <li class="d-flex align-items-center mb-3"><i class="ti ti-brand-skype"></i><span
@@ -61,21 +61,9 @@
                                         class="fw-medium mx-2 text-heading">Yet to deliver:</span> <span>15</span></li>
                             </ul>
                         </div>
-                        <div class="col-md-6">
-                            <small class="card-text text-uppercase">Analytics</small>
-                            <ul class="list-unstyled mb-4 mt-3">
-                                <li class="d-flex align-items-center mb-3"><i class="ti ti-phone-call"></i><span
-                                        class="fw-medium mx-2 text-heading">Contact:</span> <span>(123) 456-7890</span></li>
-                                <li class="d-flex align-items-center mb-3"><i class="ti ti-brand-skype"></i><span
-                                        class="fw-medium mx-2 text-heading">Skype:</span> <span>john.doe</span></li>
-                                <li class="d-flex align-items-center mb-3"><i class="ti ti-mail"></i><span
-                                        class="fw-medium mx-2 text-heading">Email:</span> <span>john.doe@example.com</span>
-                                </li>
-                            </ul>
-                        </div>
 
                     </div>
-                    <a href="javascript:void(0)" class="btn btn-success">
+                    <a href="{{ route('product.edit',['id' => $product->id ]) }}" class="btn btn-success">
                         <i class='ti ti-pencil me-1'></i> Edit
                     </a>
 
@@ -91,8 +79,8 @@
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-                <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i
-                            class='ti-xs ti ti-user-check me-1'></i> Profile</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#page_top"><i
+                            class='ti-xs ti ti-user-check me-1'></i> Details</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('pages/profile-teams') }}"><i
                             class='ti-xs ti ti-users me-1'></i> Teams</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('pages/profile-projects') }}"><i

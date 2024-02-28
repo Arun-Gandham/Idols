@@ -51,7 +51,7 @@
             "url": "/orders",
             "name": "Orders",
             "icon": "menu-icon tf-icons ti ti-files",
-            "slug": "order",
+            "slug": "order.list",
             "submenu": [
                 {
                     "url": "order",
@@ -149,6 +149,24 @@
                     "url": "role/add",
                     "name": "Add",
                     "slug": "role.add"
+                }
+            ]
+        },
+        {
+            "url": "/order-status",
+            "name": "Order Statuses",
+            "icon": "menu-icon tf-icons ti ti-lifebuoy",
+            "slug": "order.status",
+            "submenu": [
+                {
+                    "url": "order-status",
+                    "name": "List",
+                    "slug": "order.status.list"
+                },
+                {
+                    "url": "order-status/add",
+                    "name": "Add",
+                    "slug": "order.status.add"
                 }
             ]
         },

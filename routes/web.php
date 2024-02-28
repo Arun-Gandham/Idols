@@ -3,13 +3,14 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductFeetController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -128,10 +129,33 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/product/{id}/other', [ProductController::class, 'otherView'])->name('product.other.view');
 
+    // Order Statuses
+
+    Route::get('/order-status', [OrderStatusController::class, 'List'])->name('order.status.list');
+
+    Route::get('/order-status/add', [OrderStatusController::class, 'add'])->name('order.status.add');
+
+    Route::post('/order-status/add/submit', [OrderStatusController::class, 'addSubmit'])->name('order.status.add.submit');
+
+    Route::get('/order-status/{id}/edit', [OrderStatusController::class, 'edit'])->name('order.status.edit');
+
+    Route::post('/order-status/edit/submit', [OrderStatusController::class, 'editSubmit'])->name('order.status.edit.submit');
+
+    Route::get('/order-status/{id}/delete', [OrderStatusController::class, 'delete'])->name('order.status.delete');
+
     // Orders
 
     Route::get('/orders', [OrderController::class, 'list'])->name('order.list');
 
+    Route::get('/order/add', [OrderController::class, 'add'])->name('order.add');
+
+    Route::post('/order/add/submit', [OrderController::class, 'addSubmit'])->name('order.add.submit');
+
+    Route::get('/order/{id}/edit', [OrderController::class, 'edit'])->name('order.edit');
+
+    Route::post('/order/edit/submit', [OrderController::class, 'editSubmit'])->name('order.edit.submit');
+
+    Route::get('/order/{id}/delete', [OrderController::class, 'delete'])->name('order.delete');
 
     // forgot password
     Route::post('/forgot-password/submit', [PasswordResetLinkController::class, 'passwordResetSubmit'])->name('password.reset.submit');

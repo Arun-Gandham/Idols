@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -126,6 +127,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/product/{id}/stock', [ProductController::class, 'stockView'])->name('product.stock.view');
 
     Route::get('/product/{id}/other', [ProductController::class, 'otherView'])->name('product.other.view');
+
+    // Orders
+
+    Route::get('/orders', [OrderController::class, 'list'])->name('order.list');
+
 
     // forgot password
     Route::post('/forgot-password/submit', [PasswordResetLinkController::class, 'passwordResetSubmit'])->name('password.reset.submit');

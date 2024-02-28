@@ -29,6 +29,20 @@
             width: 100%;
         }
     </style>
+    @if ($error = session('error'))
+        <div class="alert alert-danger d-flex align-items-center alert-dismissible" role="alert">
+            {{ $error }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            </button>
+        </div>
+    @endif
+    @if ($success = session('success'))
+        <div class="alert alert-success d-flex align-items-center alert-dismissible" role="alert">
+            {{ $success }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            </button>
+        </div>
+    @endif
     <div class="card mb-4" id="page_top">
         <div class="card-body">
             <div class="row">
@@ -67,7 +81,7 @@
                         <i class='ti ti-pencil me-1'></i> Edit
                     </a>
 
-                    <a href="javascript:void(0)" class="btn btn-danger">
+                    <a href="{{ route('product.delete',['id' => $product->id ]) }}" class="btn btn-danger">
                         <i class='fa-solid fa-trash me-1'></i> Delete
                     </a>
                 </div>

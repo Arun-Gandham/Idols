@@ -31,7 +31,7 @@ class CreateProductsTable extends Migration
             $table->integer('model');
             $table->integer('stock')->default(0);
             $table->integer('status')->default(1);
-            $table->integer('id_deleted')->default(0);
+            $table->integer('is_deleted')->default(0);
             $table->timestamps();
         });
     }

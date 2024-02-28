@@ -28,10 +28,16 @@ class ProductController extends Controller
 
     public function delete($id)
     {
-        $feet = Product::where('id', $id)->delete();
-        if ($feet) {
-            return redirect()->back()->with('success', 'Feet deleted succesfully');
+        $product = Product::findOrFail($id);
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found.');
         }
+        $product->is_deleted = 1;
+        if($product->save())
+        {
+            return redirect('product.list')->with('success', 'Product deleted successfully');
+        }
+
 
         return redirect()->back()->with('error', 'Something went wrong');
     }

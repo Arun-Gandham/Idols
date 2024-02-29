@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderStatus;
+use App\Models\OrderTimeline;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use DateTime;
+
 class OrderController extends Controller
 {
     public function list()
@@ -27,7 +29,7 @@ class OrderController extends Controller
 
     public function edit($id)
     {
-        
+
         $order = Order::findOrFail($id);
         if (!$order) {
             return redirect()->back()->with('error', 'No Order found!');
@@ -35,13 +37,13 @@ class OrderController extends Controller
         $statuses = OrderStatus::all();
         $products = Product::all();
         $pageSettings['title'] = "Edit Order";
-        return view('templates.pages.forms.order_form', compact('statuses', 'products', 'pageSettings','order'));
+        return view('templates.pages.forms.order_form', compact('statuses', 'products', 'pageSettings', 'order'));
     }
 
     public function datatblesList()
     {
         $data = Order::orderBy('id', 'DESC')->get(); // Replace with your model and desired columns
-        
+
         return DataTables::of($data)
             ->addColumn('actions', function (Order $order) {
                 return '<a href="' . route('order.edit', $order->id) . '" class="mx-2"><i class="fa-solid fa-edit"></i> Edit</a>';
@@ -54,17 +56,17 @@ class OrderController extends Controller
                 }
             })
             ->addColumn('date', function (Order $order) {
-                    $dateTime = new DateTime($order->created_at);
-                    $today = new DateTime('today');
-                    $yesterday = new DateTime('yesterday');
-                    
-                    if ($dateTime->format('Y-m-d') === $today->format('Y-m-d')) {
-                        return 'Today '. $dateTime->format('g:i A');
-                    } elseif ($dateTime->format('Y-m-d') === $yesterday->format('Y-m-d')) {
-                        return 'Yesterday '. $dateTime->format('g:i A');
-                    } else {
-                        return $dateTime->format('d F Y g:i A'); // Format as '23 April 2023'
-                    }
+                $dateTime = new DateTime($order->created_at);
+                $today = new DateTime('today');
+                $yesterday = new DateTime('yesterday');
+
+                if ($dateTime->format('Y-m-d') === $today->format('Y-m-d')) {
+                    return 'Today ' . $dateTime->format('g:i A');
+                } elseif ($dateTime->format('Y-m-d') === $yesterday->format('Y-m-d')) {
+                    return 'Yesterday ' . $dateTime->format('g:i A');
+                } else {
+                    return $dateTime->format('d F Y g:i A'); // Format as '23 April 2023'
+                }
             })
             ->rawColumns(['actions'])
             ->make(true);
@@ -104,7 +106,7 @@ class OrderController extends Controller
         $InsertData['created_by'] = auth()->user()->id;
         $order = Order::create($InsertData);
         if ($order) {
-            $order->order_id = "#".str_pad($order->id, 5, '0', STR_PAD_LEFT);
+            $order->order_id = "#" . str_pad($order->id, 5, '0', STR_PAD_LEFT);
             $order->save();
             return redirect()->route('order.list')->with('success', 'Successfully order created');
         }
@@ -116,6 +118,6 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
         $statuses = OrderStatus::all();
         $pageSettings['title'] = "View Order";
-        return view('templates.pages.order_view.details_view', compact('pageSettings','order','statuses'));
+        return view('templates.pages.order_view.details_view', compact('pageSettings', 'order', 'statuses'));
     }
 }

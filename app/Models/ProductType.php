@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Order;
 class ProductType extends Model
 {
     /**
@@ -14,4 +14,8 @@ class ProductType extends Model
     protected $fillable = [
         'name'
     ];
+    public function product()
+    {
+        return $this->belongsTo(Product::class,'type_id');
+    }
 }

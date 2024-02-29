@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\OrderTimeline;
 class OrderStatus extends Model
 {
     use HasFactory;
@@ -20,6 +22,16 @@ class OrderStatus extends Model
 
     public function order()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class,'status_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class,'status_id');
+    }
+
+    public function orderStatus()
+    {
+        return $this->belongsTo(OrderTimeline::class,'status_id');
     }
 }

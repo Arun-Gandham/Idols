@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Role;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\OrderTimeline;
 
 class User extends Authenticatable
 {
@@ -16,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','photo','age','phone','is_active','role_id'
+        'name', 'email', 'password', 'photo', 'age', 'phone', 'is_active', 'role_id'
     ];
 
     /**
@@ -36,4 +40,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles()
+    {
+        return $this->hasMany(Role::class);
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class,'created_by');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class,'created_by');
+    }
+
 }

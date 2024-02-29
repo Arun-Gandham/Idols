@@ -147,6 +147,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/orders', [OrderController::class, 'list'])->name('order.list');
 
+    Route::get('/orders/datatable', [OrderController::class, 'datatblesList'])->name('order.list.datatables');
+
     Route::get('/order/add', [OrderController::class, 'add'])->name('order.add');
 
     Route::post('/order/add/submit', [OrderController::class, 'addSubmit'])->name('order.add.submit');

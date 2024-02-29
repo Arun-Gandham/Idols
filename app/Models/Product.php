@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Order;
-
+use App\Models\OrderStatus;
 class Product extends Model
 {
     /**
@@ -19,6 +19,11 @@ class Product extends Model
     public function order()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function status()
+    {
+        return $this->hasOne(OrderStatus::class);
     }
 
 

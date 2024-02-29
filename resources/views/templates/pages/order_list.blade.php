@@ -177,6 +177,7 @@ $configData = Helper::appClasses();
                     <th>Order Id</th>
                     <th>Name</th>
                     <th>Product</th>
+                    <th>Date</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -199,7 +200,7 @@ $configData = Helper::appClasses();
                     data: 'order_id',
                     name: 'order_id',
                     render: function(data, type, row) {
-                        return '<a href="/orders/' + row.id + '">' + data + '</a>';
+                        return '<a href="/order/' + row.id + '/view">' + data + '</a>';
                     }
                 },
                 {
@@ -212,6 +213,10 @@ $configData = Helper::appClasses();
                     render: function(data, type, row) {
                         return '<a href="/product/' + row.product_id + '/details">' + data + '</a>';
                     }
+                },
+                {
+                    data: 'date',
+                    name: 'date'
                 },
                 {
                     data: 'actions',

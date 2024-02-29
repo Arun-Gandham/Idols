@@ -159,6 +159,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/order/{id}/delete', [OrderController::class, 'delete'])->name('order.delete');
 
+    Route::get('/order/{id}/view', [OrderController::class, 'viewOrder'])->name('order.view');
+
     // forgot password
     Route::post('/forgot-password/submit', [PasswordResetLinkController::class, 'passwordResetSubmit'])->name('password.reset.submit');
 

@@ -25,7 +25,7 @@
 @section('content')
 <style>
     .max-width-idol {
-        max-width: 30rem;
+        max-width: 20rem;
         width: 100%;
     }
 </style>
@@ -46,7 +46,7 @@
 <div class="card mb-4" id="page_top">
     <div class="card-body">
         <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-6 mt-auto mb-auto">
+            <div class="col-xl-6 col-lg-6 col-md-6 mt-auto mb-auto text-center">
                 <img src="{{ asset($product->thumbnail) }}" class="max-width-idol" alt="human image">
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 mt-auto">

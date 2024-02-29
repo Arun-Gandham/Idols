@@ -48,7 +48,8 @@
     .items-list {
         max-height: 30rem;
         /* min-height: 30rem; */
-        overflow: scroll;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .product-id {
@@ -70,6 +71,32 @@
     .image-outer img {
         max-width: 15rem;
         max-height: 15rem;
+    }
+
+    /* WebKit Scrollbar */
+    ::-webkit-scrollbar {
+        width: 12px;
+        /* Width of the scrollbar */
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        /* Color of the scrollbar track */
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #DBDBDC;
+        /* Color of the scrollbar handle */
+        border-radius: 6px;
+        /* Rounded corners */
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #DBDBDC;
+        /* Color of the scrollbar handle on hover */
     }
 </style>
 
@@ -134,8 +161,8 @@
                                     <input type="number" class="form-control" placeholder="Cover Price" name="cover_price" value="{{ isset($order) ? $order->price : 0 }}" required>
                                 </div>
                             </div>
-                            
-                            @if(!$order)
+
+                            @if(!isset($order))
                             <div class="col-md-4">
                                 <label class=" col-sm-3 col-md-12 col-form-label" for="multicol-username">Status</label>
                                 <div class="col-sm-11">
@@ -206,7 +233,7 @@
                                 <div class="col-sm-4">
                                     <img src="{{ asset($product->thumbnail) }}" alt="{{ $product->name }}" class="w-100 m-2">
                                 </div>
-                                <div class="col-sm-8 product-details">
+                                <div class="col-sm-8 product-details d-flex flex-column justify-content-center align-item-center">
                                     <p>#{{ $product->id }}</p>
                                     <p class="title">{{ $product->name }}</h1>
                                     <p class="desc">sfsfasdfa</p>
@@ -221,7 +248,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>

@@ -7,13 +7,11 @@ use App\Models\OrderStatus;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-
+use DateTime;
 class OrderController extends Controller
 {
     public function list()
     {
-        // print_r(Order::first()->product->name);
-        // exit;
         $pageSettings['title'] = "Order List";
         $products = Order::orderBy('id', 'ASC')->get();
         return view('templates.pages.order_list', compact('products', 'pageSettings'));
@@ -54,6 +52,19 @@ class OrderController extends Controller
                 } else {
                     return ''; // Return an empty string or any default value if product is null
                 }
+            })
+            ->addColumn('date', function (Order $order) {
+                    $dateTime = new DateTime($order->created_at);
+                    $today = new DateTime('today');
+                    $yesterday = new DateTime('yesterday');
+                    
+                    if ($dateTime->format('Y-m-d') === $today->format('Y-m-d')) {
+                        return 'Today '. $dateTime->format('g:i A');
+                    } elseif ($dateTime->format('Y-m-d') === $yesterday->format('Y-m-d')) {
+                        return 'Yesterday '. $dateTime->format('g:i A');
+                    } else {
+                        return $dateTime->format('d F Y g:i A'); // Format as '23 April 2023'
+                    }
             })
             ->rawColumns(['actions'])
             ->make(true);
@@ -98,5 +109,13 @@ class OrderController extends Controller
             return redirect()->route('order.list')->with('success', 'Successfully order created');
         }
         return redirect()->back()->with('error', 'Failed to create order.');
+    }
+
+    public function viewOrder($id)
+    {
+        $order = Order::findOrFail($id);
+        $statuses = OrderStatus::all();
+        $pageSettings['title'] = "View Order";
+        return view('templates.pages.order_view.details_view', compact('pageSettings','order','statuses'));
     }
 }

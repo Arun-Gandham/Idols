@@ -17,16 +17,16 @@ class ProductController extends Controller
     {
         $pageSettings['title'] = "Product List";
         $pageSettings['type'] = "Product";
-        $products = Product::where('is_deleted',0)->orderBy('id', 'ASC')->get();
-        return view('templates.pages.product_list', compact('products','pageSettings'));
+        $products = Product::where('is_deleted', 0)->orderBy('id', 'ASC')->get();
+        return view('templates.pages.product_list', compact('products', 'pageSettings'));
     }
 
     public function deletedList()
     {
         $pageSettings['title'] = "Deleted Product List";
         $pageSettings['type'] = "Product";
-        $products = Product::where('is_deleted',1)->orderBy('id', 'ASC')->get();
-        return view('templates.pages.product_deleted_list', compact('products','pageSettings'));
+        $products = Product::where('is_deleted', 1)->orderBy('id', 'ASC')->get();
+        return view('templates.pages.product_deleted_list', compact('products', 'pageSettings'));
     }
 
     public function add()
@@ -35,7 +35,7 @@ class ProductController extends Controller
         $pageSettings['title'] = "Add Product";
         $types = ProductType::all();
         $feets = ProductFeet::all();
-        return view('templates.pages.forms.product_form', compact('types', 'feets','pageSettings'));
+        return view('templates.pages.forms.product_form', compact('types', 'feets', 'pageSettings'));
     }
 
     public function delete($id)
@@ -60,7 +60,7 @@ class ProductController extends Controller
         }
         $types = ProductType::all();
         $feets = ProductFeet::all();
-        return view('templates.pages.forms.product_form', compact('product', 'types', 'feets','pageSettings'));
+        return view('templates.pages.forms.product_form', compact('product', 'types', 'feets', 'pageSettings'));
     }
 
     public function editSubmit(Request $req)
@@ -96,23 +96,25 @@ class ProductController extends Controller
             if ($req->hasFile('images')) {
                 $paths = [];
                 $count = 0;
-                if (count(unserialize($product->images))) {
+                if (isset($product->images) && count(unserialize($product->images))) {
                     foreach (unserialize($product->images) as $file) {
-                        unlink($file);
+                        if (file_exists($file)) {
+                            unlink($file);
+                        }
                     }
                 }
                 foreach ($req->file('images') as $file) {
                     $filename = time() . '_' . $count . '_' . $file->getClientOriginalName();
                     $file->move(public_path("uploads/products/{$product->id}"), $filename);
-                    $paths[] = "uploads/{$product->id}/products/profiles/{$filename}";
+                    $paths[] = "uploads/products/{$product->id}/{$filename}";
                     $count++;
                 }
                 $product->images = serialize($paths);
                 $product->save();
             }
-            return redirect()->route('product.details.view',['id' => $product->id])->with('success', 'Succesfully product updated');
+            return redirect()->route('product.details.view', ['id' => $product->id])->with('success', 'Succesfully product updated');
         }
-        return redirect()->route('product.details.view',['id' => $product->id])->with('error', 'Something went wrong');
+        return redirect()->route('product.details.view', ['id' => $product->id])->with('error', 'Something went wrong');
     }
 
     public function addSubmit(Request $req)
@@ -161,11 +163,10 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Product not exist!!!');
         }
         $product->is_deleted = 0;
-        if($product->save())
-        {
-            return redirect()->route('product.list')->with('success','Product restored successfully.');
+        if ($product->save()) {
+            return redirect()->route('product.list')->with('success', 'Product restored successfully.');
         }
-        return redirect()->back()->with('error','Something went wrong');
+        return redirect()->back()->with('error', 'Something went wrong');
     }
 
     public function detailsView($id)
@@ -175,7 +176,7 @@ class ProductController extends Controller
         if (!$product) {
             return redirect()->back()->with('error', 'Product not exist!!!');
         }
-        return view('templates.pages.product_view.details_view', compact('product','pageSettings'));
+        return view('templates.pages.product_view.details_view', compact('product', 'pageSettings'));
     }
 
     public function teamsView($id)
@@ -185,7 +186,7 @@ class ProductController extends Controller
         if (!$product) {
             return redirect()->back()->with('error', 'Product not exist!!!');
         }
-        return view('templates.pages.product_view.teams_view', compact('product','pageSettings'));
+        return view('templates.pages.product_view.teams_view', compact('product', 'pageSettings'));
     }
 
     public function stockView($id)
@@ -195,7 +196,7 @@ class ProductController extends Controller
         if (!$product) {
             return redirect()->back()->with('error', 'Product not exist!!!');
         }
-        return view('templates.pages.product_view.stock_view', compact('product','pageSettings'));
+        return view('templates.pages.product_view.stock_view', compact('product', 'pageSettings'));
     }
 
     public function otherView($id)
@@ -205,7 +206,7 @@ class ProductController extends Controller
         if (!$product) {
             return redirect()->back()->with('error', 'Product not exist!!!');
         }
-        return view('templates.pages.product_view.other_view', compact('product','pageSettings'));
+        return view('templates.pages.product_view.other_view', compact('product', 'pageSettings'));
     }
 
     public function ordersView($id)
@@ -216,6 +217,6 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Product not exist!!!');
         }
         $product->orders->load('orderTimeline');
-        return view('templates.pages.product_view.orders_view', compact('product','pageSettings'));
+        return view('templates.pages.product_view.orders_view', compact('product', 'pageSettings'));
     }
 }

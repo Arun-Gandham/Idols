@@ -114,23 +114,21 @@
                     <li class="d-flex align-items-center mb-3"><i class="ti ti-flag text-heading"></i><span class="fw-medium mx-2 text-heading">Country:</span> <span>USA</span></li>
                     <li class="d-flex align-items-center mb-3"><i class="ti ti-file-description text-heading"></i><span class="fw-medium mx-2 text-heading">Languages:</span> <span>English</span></li>
                 </ul>
-                <small class="card-text text-uppercase">Contacts</small>
-                <ul class="list-unstyled mb-4 mt-3">
-                    <li class="d-flex align-items-center mb-3"><i class="ti ti-phone-call"></i><span class="fw-medium mx-2 text-heading">Contact:</span> <span>(123) 456-7890</span></li>
-                    <li class="d-flex align-items-center mb-3"><i class="ti ti-brand-skype"></i><span class="fw-medium mx-2 text-heading">Skype:</span> <span>john.doe</span></li>
-                    <li class="d-flex align-items-center mb-3"><i class="ti ti-mail"></i><span class="fw-medium mx-2 text-heading">Email:</span> <span>john.doe@example.com</span></li>
-                </ul>
-                <small class="card-text text-uppercase">Teams</small>
-                <ul class="list-unstyled mb-0 mt-3">
-                    <li class="d-flex align-items-center mb-3"><i class="ti ti-brand-angular text-danger me-2"></i>
-                        <div class="d-flex flex-wrap"><span class="fw-medium me-2 text-heading">Backend
-                                Developer</span><span>(126 Members)</span></div>
-                    </li>
-                    <li class="d-flex align-items-center"><i class="ti ti-brand-react-native text-info me-2"></i>
-                        <div class="d-flex flex-wrap"><span class="fw-medium me-2 text-heading">React
-                                Developer</span><span>(98 Members)</span></div>
-                    </li>
-                </ul>
+                <small class="card-text text-uppercase">Images</small>
+                <div class="row mb-4 mt-3">
+                    @if(isset($product->images) && count(unserialize($product->images)))
+                    @foreach(unserialize($product->images) as $image)
+                    <div class="col-md-3 mb-md-0 mb-2">
+                        <div class="form-check custom-option custom-option-image custom-option-image-radio checked">
+                                <span class="custom-option-body">
+                                    <img src="{{ asset($image) }}" alt="radioImg">
+                                </span>
+                        </div>
+                    </div>
+                    @endforeach
+                    @else
+                    @endif
+                </div>
             </div>
         </div>
     </div>

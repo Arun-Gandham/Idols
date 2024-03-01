@@ -36,6 +36,7 @@ class Order extends Model
     {
         return $this->hasOne(OrderStatus::class,'id');
     }
+    
 
     public function createdBy()
     {

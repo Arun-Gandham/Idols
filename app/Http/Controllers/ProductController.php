@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductFeet;
 use App\Models\ProductType;
+use App\Models\OrderStatus;
 use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
 use Exception;
@@ -176,7 +177,8 @@ class ProductController extends Controller
         if (!$product) {
             return redirect()->back()->with('error', 'Product not exist!!!');
         }
-        return view('templates.pages.product_view.details_view', compact('product', 'pageSettings'));
+        $statues = OrderStatus::all();
+        return view('templates.pages.product_view.details_view', compact('product', 'pageSettings','statues'));
     }
 
     public function teamsView($id)
@@ -186,7 +188,8 @@ class ProductController extends Controller
         if (!$product) {
             return redirect()->back()->with('error', 'Product not exist!!!');
         }
-        return view('templates.pages.product_view.teams_view', compact('product', 'pageSettings'));
+        $statues = OrderStatus::all();
+        return view('templates.pages.product_view.teams_view', compact('product', 'pageSettings','statues'));
     }
 
     public function stockView($id)
@@ -196,7 +199,8 @@ class ProductController extends Controller
         if (!$product) {
             return redirect()->back()->with('error', 'Product not exist!!!');
         }
-        return view('templates.pages.product_view.stock_view', compact('product', 'pageSettings'));
+        $statues = OrderStatus::all();
+        return view('templates.pages.product_view.stock_view', compact('product', 'pageSettings','statues'));
     }
 
     public function otherView($id)
@@ -206,7 +210,8 @@ class ProductController extends Controller
         if (!$product) {
             return redirect()->back()->with('error', 'Product not exist!!!');
         }
-        return view('templates.pages.product_view.other_view', compact('product', 'pageSettings'));
+        $statues = OrderStatus::all();
+        return view('templates.pages.product_view.other_view', compact('product', 'pageSettings','statues'));
     }
 
     public function ordersView($id)
@@ -217,6 +222,7 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Product not exist!!!');
         }
         $product->orders->load('orderTimeline');
-        return view('templates.pages.product_view.orders_view', compact('product', 'pageSettings'));
+        $statues = OrderStatus::all();
+        return view('templates.pages.product_view.orders_view', compact('product', 'pageSettings','statues'));
     }
 }

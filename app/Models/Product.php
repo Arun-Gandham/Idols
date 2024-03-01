@@ -29,6 +29,16 @@ class Product extends Model
         return $this->hasOne(OrderStatus::class);
     }
 
+    // Used in product view page
+    public function getOrderStatusCount($id = null)
+    {
+        $orderStatus = $this->orders();
+        if ($id) {
+            $orderStatus->where('status_id', $id);
+        }
+        return $orderStatus->count();
+    }
+
     public function feet()
     {
         return $this->hasOne(ProductFeet::class,'id');

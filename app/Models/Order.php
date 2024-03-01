@@ -27,6 +27,11 @@ class Order extends Model
         return $this->hasMany(OrderTimeline::class,'order_id');
     }
 
+    public function getOrderTotalReceived()
+    {
+        return $this->orderTimeline->where('is_deleted', 0)->sum('amount');
+    }
+
     public function orderStatus()
     {
         return $this->hasOne(OrderStatus::class,'id');

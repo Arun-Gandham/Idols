@@ -254,11 +254,6 @@
 </div>
 
 <script>
-    function setStatus(id, name) {
-        document.getElementById('status_id').value = id;
-        document.getElementById('dropdownMenuButton').innerText = name;
-    }
-
     document.getElementById('searchInput').addEventListener('input', function() {
         var searchQuery = this.value.toLowerCase();
         var listItems = document.querySelectorAll('#list li');

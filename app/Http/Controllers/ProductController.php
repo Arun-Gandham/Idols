@@ -207,4 +207,15 @@ class ProductController extends Controller
         }
         return view('templates.pages.product_view.other_view', compact('product','pageSettings'));
     }
+
+    public function ordersView($id)
+    {
+        $pageSettings['title'] = "Product Details";
+        $product = Product::with(['orders'])->where('id', $id)->first();
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not exist!!!');
+        }
+        $product->orders->load('orderTimeline');
+        return view('templates.pages.product_view.orders_view', compact('product','pageSettings'));
+    }
 }

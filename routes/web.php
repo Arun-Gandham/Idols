@@ -123,6 +123,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/product/{id}/details', [ProductController::class, 'detailsView'])->name('product.details.view');
 
+    Route::get('/product/{id}/orders', [ProductController::class, 'ordersView'])->name('product.orders.view');
+
     Route::get('/product/{id}/teams', [ProductController::class, 'teamsView'])->name('product.teams.view');
 
     Route::get('/product/{id}/stock', [ProductController::class, 'stockView'])->name('product.stock.view');

@@ -56,16 +56,12 @@
                 <p class="m-0">Status : {{ $user->is_active ? "Active" : "Inactive" }}</p>
                 <div class="d-flex align-items-center justify-content-around my-3 py-1">
                     <div>
-                        <h4 class="mb-0">18</h4>
-                        <span>Sold</span>
+                        <h4 class="mb-0">{{ count($user->getAllOrders) }}</h4>
+                        <span>Sales</span>
                     </div>
                     <div>
-                        <h4 class="mb-0">834</h4>
+                        <h4 class="mb-0">&#8377; {{ number_format($user->getAllOrdersPriceSum(), 0, '.', ',') }}</h4>
                         <span>Amount Collected</span>
-                    </div>
-                    <div>
-                        <h4 class="mb-0">129</h4>
-                        <span>Connections</span>
                     </div>
                 </div>
             </div>

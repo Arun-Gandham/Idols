@@ -51,6 +51,21 @@ class User extends Authenticatable
         return $this->belongsTo(Order::class,'created_by');
     }
 
+    public function getAllOrders()
+    {
+        return $this->hasMany(Order::class,'created_by');
+    }
+
+    public function getAllOrdersPriceSum()
+    {
+        $this->load('getAllOrders');
+
+        // Calculate the sum of amounts
+        $totalAmount = $this->getAllOrders->sum('price');
+
+        return $totalAmount;
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class,'created_by');

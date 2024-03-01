@@ -41,7 +41,7 @@ class Product extends Model
 
     public function feet()
     {
-        return $this->hasOne(ProductFeet::class,'id');
+        return $this->hasOne(ProductFeet::class,'id','feet_id');
     }
 
     public function type()

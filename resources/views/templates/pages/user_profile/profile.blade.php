@@ -2,21 +2,11 @@
 
 @section('title', isset($pageSettings['title']) ? $pageSettings['title'] : "User Profile")
 
-@section('vendor-style')
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
-@endsection
-
 <!-- Page -->
 @section('page-style')
 <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-profile.css') }}" />
 @endsection
 
-
-@section('vendor-script')
-<script src="{{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-@endsection
 
 @section('page-script')
 <script src="{{ asset('assets/js/pages-profile.js') }}"></script>
@@ -81,18 +71,6 @@
             </div>
         </div>
         <!--/ About User -->
-        <!-- Profile Overview -->
-        <div class="card mb-4">
-            <div class="card-body">
-                <p class="card-text text-uppercase">Overview</p>
-                <ul class="list-unstyled mb-0">
-                    <li class="d-flex align-items-center mb-3"><i class="ti ti-check"></i><span class="fw-medium mx-2">Task Compiled:</span> <span>13.5k</span></li>
-                    <li class="d-flex align-items-center mb-3"><i class="ti ti-layout-grid"></i><span class="fw-medium mx-2">Projects Compiled:</span> <span>146</span></li>
-                    <li class="d-flex align-items-center"><i class="ti ti-users"></i><span class="fw-medium mx-2">Connections:</span> <span>897</span></li>
-                </ul>
-            </div>
-        </div>
-        <!--/ Profile Overview -->
     </div>
 
     <div class="col-xl-8 col-lg-7 col-md-7">
@@ -108,12 +86,12 @@
                             <div class="d-flex align-items-center">
                                 <div class="badge rounded-pill bg-label-primary me-3 p-2"><i class="ti ti-chart-pie-2 ti-sm"></i></div>
                                 <div class="card-info">
-                                    <h5 class="mb-0">230k</h5>
+                                    <h5 class="mb-0">{{ count($user->getAllOrders) }}</h5>
                                     <small>Sales</small>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-6">
+                        <!-- <div class="col-md-3 col-6">
                             <div class="d-flex align-items-center">
                                 <div class="badge rounded-pill bg-label-info me-3 p-2"><i class="ti ti-users ti-sm"></i></div>
                                 <div class="card-info">
@@ -130,12 +108,12 @@
                                     <small>Products</small>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-3 col-6">
                             <div class="d-flex align-items-center">
                                 <div class="badge rounded-pill bg-label-success me-3 p-2"><i class="ti ti-currency-dollar ti-sm"></i></div>
                                 <div class="card-info">
-                                    <h5 class="mb-0">$9745</h5>
+                                    <h5 class="mb-0">&#8377; {{ number_format($user->getAllOrdersPriceSum(), 0, '.', ',') }}</h5>
                                     <small>Revenue</small>
                                 </div>
                             </div>
@@ -147,7 +125,7 @@
         <!-- Activity Timeline -->
         <div class="card card-action mb-4">
             <div class="card-header align-items-center">
-                <h5 class="card-action-title mb-0">Activity Timeline</h5>
+                <h5 class="card-action-title mb-0">Orders Timeline</h5>
                 <div class="card-action-element">
                     <div class="dropdown">
                         <button type="button" class="btn dropdown-toggle hide-arrow p-0" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical text-muted"></i></button>
@@ -164,65 +142,28 @@
             </div>
             <div class="card-body pb-0">
                 <ul class="timeline ms-1 mb-0">
+                    @foreach($user->getAllOrders as $order)
                     <li class="timeline-item timeline-item-transparent">
                         <span class="timeline-point timeline-point-primary"></span>
                         <div class="timeline-event">
                             <div class="timeline-header">
-                                <h6 class="mb-0">Client Meeting</h6>
+                                <h6 class="mb-0">Customer Name: {{ $order->name }}</h6>
                                 <small class="text-muted">Today</small>
                             </div>
-                            <p class="mb-2">Project meeting with john @10:15am</p>
+                            <p class="mb-0">Phone {{ $order->phone1 }}, {{ $order->phone2 }}</p>
+                            <p class="mb-2">Description: {{ $order->note }}</p>
                             <div class="d-flex flex-wrap">
                                 <div class="avatar me-2">
-                                    <img src="{{ asset('assets/img/avatars/3.png') }}" alt="Avatar" class="rounded-circle" />
+                                    <img src="{{ asset($order->product->thumbnail) }}" alt="{{ $order->product->name }}" class="rounded-circle" />
                                 </div>
                                 <div class="ms-1">
-                                    <h6 class="mb-0">Lester McCarthy (Client)</h6>
-                                    <span>CEO of Infibeam</span>
+                                    <h6 class="mb-0"><a href="{{ route('product.details.view',$order->product->id) }}">{{ $order->product->name }}</a></h6>
+                                    <span>Price: &#x20b9; {{ number_format($order->price, 0, '.', ',') }}</span>
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <li class="timeline-item timeline-item-transparent">
-                        <span class="timeline-point timeline-point-success"></span>
-                        <div class="timeline-event">
-                            <div class="timeline-header">
-                                <h6 class="mb-0">Create a new project for client</h6>
-                                <small class="text-muted">2 Day Ago</small>
-                            </div>
-                            <p class="mb-0">Add files to new design folder</p>
-                        </div>
-                    </li>
-                    <li class="timeline-item timeline-item-transparent">
-                        <span class="timeline-point timeline-point-danger"></span>
-                        <div class="timeline-event">
-                            <div class="timeline-header">
-                                <h6 class="mb-0">Shared 2 New Project Files</h6>
-                                <small class="text-muted">6 Day Ago</small>
-                            </div>
-                            <p class="mb-2">Sent by Mollie Dixon <img src="{{ asset('assets/img/avatars/4.png') }}" class="rounded-circle me-3" alt="avatar" height="24" width="24"></p>
-                            <div class="d-flex flex-wrap gap-2 pt-1">
-                                <a href="javascript:void(0)" class="me-3">
-                                    <img src="{{ asset('assets/img/icons/misc/doc.png') }}" alt="Document image" width="15" class="me-2">
-                                    <span class="fw-medium text-heading">App Guidelines</span>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <img src="{{ asset('assets/img/icons/misc/xls.png') }}" alt="Excel image" width="15" class="me-2">
-                                    <span class="fw-medium text-heading">Testing Results</span>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="timeline-item timeline-item-transparent border-transparent">
-                        <span class="timeline-point timeline-point-info"></span>
-                        <div class="timeline-event">
-                            <div class="timeline-header">
-                                <h6 class="mb-0">Project status updated</h6>
-                                <small class="text-muted">10 Day Ago</small>
-                            </div>
-                            <p class="mb-0">Woocommerce iOS App Completed</p>
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

@@ -163,6 +163,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/order/{id}/view', [OrderController::class, 'viewOrder'])->name('order.view');
 
+    Route::post('/order/update/status', [OrderController::class, 'updateOrderStatus'])->name('order.update.status');
+
+    // Order Timeline 
+    Route::get('/order/{id}/timeline/delete', [OrderController::class, 'deleteOrderTimeline'])->name('order.timeline.delete');
+
     // forgot password
     Route::post('/forgot-password/submit', [PasswordResetLinkController::class, 'passwordResetSubmit'])->name('password.reset.submit');
 

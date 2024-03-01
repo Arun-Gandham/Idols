@@ -120,4 +120,54 @@ class OrderController extends Controller
         $pageSettings['title'] = "View Order";
         return view('templates.pages.order_view.details_view', compact('pageSettings', 'order', 'statuses'));
     }
+
+    public function updateOrderStatus(Request $req)
+    {
+        $orderTImelineExists = OrderTimeline::where('status_id', $req->status)->where('order_id', $req->order_id)->where('is_deleted', 0)->first();
+        if ($orderTImelineExists) {
+            $status_name = OrderStatus::findOrFail($req->status);
+            return redirect()->back()->with('error', 'Status update failed. If you wish to update please delete the old status - ' . $status_name->name);
+        }
+        $InsertData['order_id'] = $req->order_id;
+        $InsertData['status_id'] = $req->status;
+        $InsertData['description'] = $req->description;
+        $InsertData['amount'] = $req->amount;
+        $InsertData['is_deleted'] = 0;
+        $InsertData['created_id'] = auth()->user()->id;
+        $orderTimeline = OrderTimeline::create($InsertData);
+        if ($orderTimeline) {
+            $order = Order::findOrFail($req->order_id);
+            $order->status_id = $req->status;
+            if ($order->save()) {
+                return redirect()->back()->with('success', 'Successfully Status Updated');
+            } else {
+                return redirect()->back()->with('error', 'Failed to update status.');
+            }
+        }
+        return redirect()->back()->with('error', 'Failed to update status.');
+    }
+
+    public function deleteOrderTimeline($id)
+    {
+        $timeline = OrderTimeline::findOrFail($id);
+        if (!$timeline) {
+            return redirect()->back()->with('error', 'Timeline not found');
+        }
+
+        $timeline->deleted_id = auth()->user()->id;
+        $timeline->is_deleted = 1;
+        if ($timeline->save()) {
+            $InsertData['order_id'] = $timeline->order_id;
+            $InsertData['status_id'] = null;
+            $InsertData['description'] = "Order status deleted.Timeline status is : ". $timeline->timelineStatus->name ." - ". $timeline->order_id . ". Any amount is associated with that status will not be counted.";
+            $InsertData['is_deleted'] = 1;
+            $InsertData['created_id'] = auth()->user()->id;
+            $orderTimeline = OrderTimeline::create($InsertData);
+            if ($orderTimeline) {
+                return redirect()->back()->with('success', 'Timeline deleted successfully');
+            }
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
+        return redirect()->back()->with('error', 'Something went wrong');
+    }
 }

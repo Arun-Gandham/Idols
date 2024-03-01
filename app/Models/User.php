@@ -56,4 +56,14 @@ class User extends Authenticatable
         return $this->belongsTo(Product::class,'created_by');
     }
 
+    public function timelineCreatedId()
+    {
+        return $this->belongsTo(OrderTimeline::class,'created_id');
+    }
+
+    public function timelineDeletedId()
+    {
+        return $this->belongsTo(OrderTimeline::class,'deleted_id');
+    }
+
 }

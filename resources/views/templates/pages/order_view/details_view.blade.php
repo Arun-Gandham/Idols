@@ -2,26 +2,6 @@
 
 @section('title', isset($pageSettings['title']) ? $pageSettings['title'] : "Product Details View")
 
-@section('vendor-style')
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
-@endsection
-
-<!-- Page -->
-@section('page-style')
-<link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-profile.css') }}" />
-@endsection
-
-
-@section('vendor-script')
-<script src="{{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-@endsection
-
-@section('page-script')
-<script src="{{ asset('assets/js/pages-profile.js') }}"></script>
-@endsection
-
 @section('content')
 <style>
     .max-width-idol {
@@ -54,9 +34,9 @@
                     <div class="col-md-6">
                         <small class="card-text text-uppercase">Order Details</small>
                         <ul class="list-unstyled mb-4 mt-3">
+                            <li class="d-flex align-items-center mb-3"><i class="ti ti-user text-heading"></i><span class="fw-medium mx-2 text-heading">Order Id:</span> <span><strong>{{ $order->order_id }}</strong></span></li>
                             <li class="d-flex align-items-center mb-3"><i class="ti ti-user text-heading"></i><span class="fw-medium mx-2 text-heading">User Name:</span> <span>{{ $order->name }}</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="ti ti-crown text-heading"></i><span class="fw-medium mx-2 text-heading">Phone:</span> <span>{{ $order->phone1 }}</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="ti ti-flag text-heading"></i><span class="fw-medium mx-2 text-heading">Alt Phone:</span> <span>{{ $order->phone2 }}</span>
+                            <li class="d-flex align-items-center mb-3"><i class="ti ti-crown text-heading"></i><span class="fw-medium mx-2 text-heading">Phone:</span> <span><a href="tel:{{ $order->phone1 }}">{{ $order->phone1 }}</a>, <a href="tel:{{ $order->phone2 }}">{{ $order->phone2 }}</a></span></li>
                             <li class="d-flex align-items-center mb-3"><i class="ti ti-user text-heading"></i><span class="fw-medium mx-2 text-heading">Address:</span> <span>{{ $order->address }}</span></li>
                             <li class="d-flex align-items-center mb-3"><i class="ti ti-flag text-heading"></i><span class="fw-medium mx-2 text-heading">Price:</span> <span>{{ $order->phone2 }}</span>
                             <li class="d-flex align-items-center mb-3"><i class="ti ti-user text-heading"></i><span class="fw-medium mx-2 text-heading">Cover Price:</span> <span>{{ $order->address }}</span></li>
@@ -66,8 +46,8 @@
                         </ul>
                         <small class="card-text text-uppercase">Product Details</small>
                         <ul class="list-unstyled mb-4 mt-3">
-                            <li class="d-flex align-items-center mb-3"><i class="ti ti-user text-heading"></i><span class="fw-medium mx-2 text-heading">Product Name:</span> <span>{{ $order->product->name }}</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="ti ti-crown text-heading"></i><span class="fw-medium mx-2 text-heading">Feet:</span> <span>{{ $order->product->feet_id }}</span></li>
+                            <li class="d-flex align-items-center mb-3"><i class="ti ti-user text-heading"></i><span class="fw-medium mx-2 text-heading">Product Name:</span> <span><a href="{{ route('product.details.view',$order->product->id) }}">{{ $order->product->name }}</a></span></li>
+                            <li class="d-flex align-items-center mb-3"><i class="ti ti-crown text-heading"></i><span class="fw-medium mx-2 text-heading">Feet:</span> <span>{{ $order->product->feet->feet }}</span></li>
                             </li>
                         </ul>
                     </div>
@@ -79,15 +59,15 @@
 <div class="status-update-bar mb-4">
     <div class="card">
         <div class="card-body">
-            
-            <form class="card-body" method="POST" action="{{ isset($product) ? route('product.edit.submit') : route('product.add.submit') }}" enctype="multipart/form-data">
+
+            <form class="card-body" method="POST" action="{{ route('order.update.status') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                <small class="card-text text-uppercase">Update Status</small>
+                    <small class="card-text text-uppercase">Update Status</small>
                     <div class="col-md-6">
                         <label class=" col-sm-3 col-md-12 col-form-label" for="multicol-username">Status</label>
                         <div class="col-sm-11">
-                            <select class="form-select" name="feet_id" required="">
+                            <select class="form-select" name="status" required="">
                                 @foreach ($statuses as $status)
                                 <option {{ isset($order) && $status->id === $order->status_id ? 'selected' : '' }} value="{{ $status->id }}">{{ $status->name }}</option>
                                 @endforeach
@@ -97,19 +77,19 @@
                     <div class="col-md-6">
                         <label class=" col-sm-3 col-md-12 col-form-label" for="multicol-username">Amount</label>
                         <div class="col-sm-11">
-                            <input type="number" class="form-control" placeholder="Amount" name="amount" required>
+                            <input type="number" class="form-control" placeholder="Amount" name="amount">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <label class="col-sm-12 col-form-label" for="multicol-username">Description</label>
                         <div class="col-sm-12">
-                            <textarea class="form-control" placeholder="Say it" rows="3" required name="description"></textarea>
+                            <textarea class="form-control" placeholder="Say it" rows="3" name="description"></textarea>
                         </div>
                     </div>
                     <div class="pt-4">
                         <div class="row justify-content-start">
                             <div class="col-sm-11">
-                                <input type="hidden" name="id" value="{{$order->id}}">
+                                <input type="hidden" name="order_id" value="{{$order->id}}">
                                 <button type="submit" class="btn btn-primary me-sm-2 me-1 waves-effect waves-light">Submit</button>
                             </div>
                         </div>
@@ -127,10 +107,10 @@
             <div class="card-body">
                 <small class="card-text text-uppercase">Product Details</small>
                 <ul class="list-unstyled mb-4 mt-3">
-                    <li class="d-flex align-items-center mb-3"><i class="ti ti-user text-heading"></i><span class="fw-medium mx-2 text-heading">Product Name:</span> <span>{{ $order->product->name }}</span></li>
+                    <li class="d-flex align-items-center mb-3"><i class="ti ti-user text-heading"></i><span class="fw-medium mx-2 text-heading">Product Name:</span> <span><a href="{{ route('product.details.view',$order->product->id) }}">{{ $order->product->name }}</a></span></li>
                     <li class="d-flex align-items-center mb-3"><i class="ti ti-check text-heading"></i><span class="fw-medium mx-2 text-heading">Body Color:</span> <span>{{ $order->product->body_color }}</span></li>
                     <li class="d-flex align-items-center mb-3"><i class="ti ti-crown text-heading"></i><span class="fw-medium mx-2 text-heading">Pancha/Saree Color:</span> <span>{{ $order->product->pancha_saree_color }}</span></li>
-                    <li class="d-flex align-items-center mb-3"><i class="ti ti-flag text-heading"></i><span class="fw-medium mx-2 text-heading">Feet:</span> <span>{{ $order->product->feet_id }}</span></li>
+                    <li class="d-flex align-items-center mb-3"><i class="ti ti-flag text-heading"></i><span class="fw-medium mx-2 text-heading">Feet:</span> <span>{{ $order->product->feet->feet }}</span></li>
                 </ul>
             </div>
         </div>
@@ -157,68 +137,129 @@
             <div class="card-body pb-0">
                 <ul class="timeline ms-1 mb-0">
                     <li class="timeline-item timeline-item-transparent">
-                        <span class="timeline-point timeline-point-primary"></span>
-                        <div class="timeline-event">
-                            <div class="timeline-header">
-                                <h6 class="mb-0">Client Meeting</h6>
-                                <small class="text-muted">Today</small>
-                            </div>
-                            <p class="mb-2">Project meeting with john @10:15am</p>
-                            <div class="d-flex flex-wrap">
-                                <div class="avatar me-2">
-                                    <img src="{{ asset('assets/img/avatars/3.png') }}" alt="Avatar" class="rounded-circle" />
-                                </div>
-                                <div class="ms-1">
-                                    <h6 class="mb-0">Lester McCarthy (Client)</h6>
-                                    <span>CEO of Infibeam</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="timeline-item timeline-item-transparent">
                         <span class="timeline-point timeline-point-success"></span>
                         <div class="timeline-event">
                             <div class="timeline-header">
-                                <h6 class="mb-0">Create a new project for client</h6>
-                                <small class="text-muted">2 Day Ago</small>
+                                <h6 class="mb-0">Order Booked</h6>
+                                <small class="text-muted">
+                                    @php
+                                    $dateTime = new DateTime($order->created_at);
+                                    $today = new DateTime('today');
+                                    $yesterday = new DateTime('yesterday');
+
+                                    if ($dateTime->format('Y-m-d') === $today->format('Y-m-d')) {
+                                    echo 'Today ' . $dateTime->format('g:i A');
+                                    } elseif ($dateTime->format('Y-m-d') === $yesterday->format('Y-m-d')) {
+                                    echo 'Yesterday ' . $dateTime->format('g:i A');
+                                    } else {
+                                    echo $dateTime->format('d F Y g:i A'); // Format as '23 April 2023'
+                                    }
+                                    @endphp
+                                </small>
                             </div>
-                            <p class="mb-0">Add files to new design folder</p>
+                            <p class="mb-1">Description: Order Confirmed and booked</p>
+                            <p class="mb-2">Amount: ---</p>
+                            <div class="d-flex flex-wrap">
+                                <div class="avatar me-2">
+                                    <img src="{{ asset($order->createdBy->photo) }}" alt="Avatar" class="rounded-circle" />
+                                </div>
+                                <div class="ms-1">
+                                    <h6 class="mb-0"><a href="{{ route('user.profile.view',$order->createdBy->id) }}">{{ $order->createdBy->name }}</a></h6>
+                                    <span><a ref="tel:{{ $order->createdBy->phone }}">{{ $order->createdBy->phone }}</a></span>
+                                </div>
+                            </div>
                         </div>
                     </li>
+                    @foreach($order->orderTimeline as $timeline)
                     <li class="timeline-item timeline-item-transparent">
-                        <span class="timeline-point timeline-point-danger"></span>
+                        <span class="timeline-point timeline-point-{{ $timeline->is_deleted === 1 ? 'danger' : 'info' }}"></span>
                         <div class="timeline-event">
                             <div class="timeline-header">
-                                <h6 class="mb-0">Shared 2 New Project Files</h6>
-                                <small class="text-muted">6 Day Ago</small>
+                                <h6 class="mb-0">{{ isset($timeline->timelineStatus->name) ? $timeline->timelineStatus->name : "---" }} 
+                                    @if($timeline->is_deleted === 0)
+                                    <a data-bs-toggle="modal" style="cursor: pointer;" data-bs-target="#modalCenter" id="deleteButton" data-url="{{ route('order.timeline.delete',$timeline->id) }}">
+                                        <i class="fa fa-trash text-danger"></i>
+                                    </a>
+                                    @endif
+                                </h6>
+                                <small class="text-muted">
+                                    @php
+                                    $dateTime = new DateTime($timeline->created_at);
+                                    $today = new DateTime('today');
+                                    $yesterday = new DateTime('yesterday');
+
+                                    if ($dateTime->format('Y-m-d') === $today->format('Y-m-d')) {
+                                    echo 'Today ' . $dateTime->format('g:i A');
+                                    } elseif ($dateTime->format('Y-m-d') === $yesterday->format('Y-m-d')) {
+                                    echo 'Yesterday ' . $dateTime->format('g:i A');
+                                    } else {
+                                    echo $dateTime->format('d F Y g:i A'); // Format as '23 April 2023'
+                                    }
+                                    @endphp
+                                </small>
                             </div>
-                            <p class="mb-2">Sent by Mollie Dixon <img src="{{ asset('assets/img/avatars/4.png') }}" class="rounded-circle me-3" alt="avatar" height="24" width="24"></p>
-                            <div class="d-flex flex-wrap gap-2 pt-1">
-                                <a href="javascript:void(0)" class="me-3">
-                                    <img src="{{ asset('assets/img/icons/misc/doc.png') }}" alt="Document image" width="15" class="me-2">
-                                    <span class="fw-medium text-heading">App Guidelines</span>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <img src="{{ asset('assets/img/icons/misc/xls.png') }}" alt="Excel image" width="15" class="me-2">
-                                    <span class="fw-medium text-heading">Testing Results</span>
-                                </a>
+                            <p class="mb-1">Description: {{ isset($timeline->description) ? $timeline->description : "---" }}</p>
+                            <p class="mb-2">Amount: {{ isset($timeline->amount) ? $timeline->amount : "---" }}</p>
+                            <div class="d-flex flex-wrap">
+                                <div class="avatar me-2">
+                                    <img src="{{ asset($timeline->createdBy->photo) }}" alt="Avatar" class="rounded-circle" />
+                                </div>
+                                <div class="ms-1">
+                                    <h6 class="mb-0"><a href="{{ route('user.profile.view',$timeline->createdBy->id) }}">{{ $timeline->createdBy->name }}</a></h6>
+                                    <span><a ref="tel:{{ $timeline->createdBy->phone }}">{{ $timeline->createdBy->phone }}</a></span>
+                                </div>
                             </div>
                         </div>
                     </li>
-                    <li class="timeline-item timeline-item-transparent border-transparent">
-                        <span class="timeline-point timeline-point-info"></span>
-                        <div class="timeline-event">
-                            <div class="timeline-header">
-                                <h6 class="mb-0">Project status updated</h6>
-                                <small class="text-muted">10 Day Ago</small>
-                            </div>
-                            <p class="mb-0">Woocommerce iOS App Completed</p>
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
     </div>
 </div>
-<!--/ User Profile Content -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalCenterTitle">Are you sure to delete?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Amount will not be calculated any more are this status will be marked as deleted.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Get a reference to the delete button and the modal
+    var deleteButton = document.getElementById('deleteButton');
+    var modal = new bootstrap.Modal(document.getElementById('modalCenter'));
+
+    // Add click event listener to the delete button
+    deleteButton.addEventListener('click', function() {
+        // Show the modal
+        modal.show();
+    });
+
+    // Function to handle deletion when the user confirms in the modal
+    function confirmDelete() {
+        // Get the delete URL from the data-url attribute of the delete button
+        var deleteUrl = deleteButton.getAttribute('data-url');
+
+        // Redirect the user to the delete URL
+        window.location.href = deleteUrl;
+
+        // Optionally, you can also close the modal after redirection
+        modal.hide();
+    }
+</script>
+
 @endsection

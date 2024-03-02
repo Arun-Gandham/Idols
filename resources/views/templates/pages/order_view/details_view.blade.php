@@ -50,6 +50,10 @@
                             <li class="d-flex align-items-center mb-3"><i class="ti ti-crown text-heading"></i><span class="fw-medium mx-2 text-heading">Feet:</span> <span>{{ $order->product->feet->feet }}</span></li>
                             </li>
                         </ul>
+                        <div class="d-flex">
+                            <a href="{{ route('download.invoice',$order->id) }}"><button class="btn btn-label-secondary waves-effect text-black text-nowrap"><i class="fa-solid fa-download"></i> &nbsp; Download Invoice</button></a>
+                            <a class="ms-3" href="{{ route('download.invoice',$order->id) }}"><button class="btn btn-success waves-effect text-white text-nowrap"><i class="fa-solid fa-paper-plane"></i> &nbsp;  Send Invoice</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -175,7 +179,7 @@
                         <span class="timeline-point timeline-point-{{ $timeline->is_deleted === 1 ? 'danger' : 'info' }}"></span>
                         <div class="timeline-event">
                             <div class="timeline-header">
-                                <h6 class="mb-0">{{ isset($timeline->timelineStatus->name) ? $timeline->timelineStatus->name : "---" }} 
+                                <h6 class="mb-0">{{ isset($timeline->timelineStatus->name) ? $timeline->timelineStatus->name : "---" }}
                                     @if($timeline->is_deleted === 0)
                                     <a data-bs-toggle="modal" style="cursor: pointer;" data-bs-target="#modalCenter" id="deleteButton" data-url="{{ route('order.timeline.delete',$timeline->id) }}">
                                         <i class="fa fa-trash text-danger"></i>

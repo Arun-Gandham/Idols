@@ -159,7 +159,7 @@
             "url": "/settings",
             "name": "Settings",
             "icon": "menu-icon tf-icons ti ti-manual-gearbox",
-            "slug": "group.list"
+            "slug": "settings"
         }
     ]
 }

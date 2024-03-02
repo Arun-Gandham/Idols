@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->string('website_name');
+            $table->text('description')->nullable();
+            $table->integer('modal')->nullable();
+            $table->string('favicon')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

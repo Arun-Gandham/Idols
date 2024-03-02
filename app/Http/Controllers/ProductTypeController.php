@@ -39,7 +39,6 @@ class ProductTypeController extends Controller
 
     public function editSubmit(Request $req)
     {
-        // return $req->all();
         $type = ProductType::where('id', $req->id)->first();
 
         if (!$type) {
@@ -47,6 +46,7 @@ class ProductTypeController extends Controller
         }
 
         $type->name = $req->name;
+        $type->description = $req->description;
 
         if ($type->save()) {
             return redirect()->route('type.list')->with('success', 'Succesfully updated');
@@ -58,6 +58,7 @@ class ProductTypeController extends Controller
     public function addSubmit(Request $req)
     {
         $InsertData['name'] = $req->name;
+        $InsertData['description'] = $req->description;
         $type = ProductType::create($InsertData);
 
         if ($type) {

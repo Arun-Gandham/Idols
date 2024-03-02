@@ -62,6 +62,7 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>description</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -69,6 +70,7 @@
                     @foreach($types as $type)
                         <tr>
                             <td>{{ $type->name }}</td>
+                            <td>{{ $type->description }}</td>
                             <td>
                                 <a href="{{ route('type.edit',['id' => $type->id]) }}" class="text-success me-2"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <a href="{{ route('type.delete',['id' => $type->id]) }}" class="text-danger ms-2"><i class="fa-solid fa-trash"></i></a>

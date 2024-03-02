@@ -63,6 +63,13 @@
                                             value="{{ isset($type) ? $type->name : '' }}" required>
                                     </div>
                                 </div>
+                                <div class="col-12">
+                                    <label class="col-sm-3 col-form-label" for="multicol-username">Description</label>
+                                    <div class="col-sm-11">
+                                        <input  type="text" step="0.01" class="form-control" placeholder="Description" name="description"
+                                            value="{{ isset($type) ? $type->description : '' }}" required>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="pt-4">

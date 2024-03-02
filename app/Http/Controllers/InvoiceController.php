@@ -20,7 +20,7 @@ class InvoiceController extends Controller
         if (!File::isDirectory($pdfDirectory)) {
             File::makeDirectory($pdfDirectory, 0755, true, true);
         }
-        $pdf->save(public_path('pdf\\' . $order->name . '_' . $order_id . '_' . date("Y_M_D_H_M") . '.pdf'));
+        // $pdf->save(public_path('pdf\\' . $order->name . '_' . $order_id . '_' . date("Y_M_D_H_M") . '.pdf'));
         return $pdf->download('invoice.pdf');
     }
 }

@@ -23,7 +23,8 @@ class UserSeed extends Seeder
         ]);
 
         DB::table('product_types')->insert([
-            'name' => 'Ganapathi'
+            'name' => 'Ganapathi',
+            'description' => 'Embrace tradition. Timeless clay idols: crafted artistry, cultural elegance.'
         ]);
 
         DB::table('product_feets')->insert([

@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\FrontPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,10 +27,11 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    $pageConfigs = ['myLayout' => 'front'];
-    return view('templates.front.landing-page', ['pageConfigs' => $pageConfigs]);
-});
+// Route::get('/', function () {
+//     $pageConfigs = ['myLayout' => 'front'];
+//     return view('templates.front.landing-page', ['pageConfigs' => $pageConfigs]);
+// });
+Route::get('/', [FrontPageController::class, 'landingPage'])->name('landing.page');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

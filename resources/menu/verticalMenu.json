@@ -105,17 +105,17 @@
             "url": "/testimonials",
             "name": "Testimonials",
             "icon": "menu-icon tf-icons ti ti-lifebuoy",
-            "slug": "ammavaru-idols",
+            "slug": "testimonials",
             "submenu": [
                 {
-                    "url": "users",
+                    "url": "/testimonials",
                     "name": "List",
-                    "slug": "users.list"
+                    "slug": "testimonials.list"
                 },
                 {
-                    "url": "users/add",
+                    "url": "/testimonials/add",
                     "name": "Add",
-                    "slug": "users.add"
+                    "slug": "testimonials.add"
                 }
             ]
         },

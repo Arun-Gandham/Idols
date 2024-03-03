@@ -109,7 +109,7 @@ $configData = Helper::appClasses();
                         <span class="badge bg-label-primary">Real Customers Reviews</span>
                     </div>
                     <h3 class="mb-1"><span class="section-title">What people say</span></h3>
-                    <p class="mb-3 mb-md-5">
+                    <p class="mb-3 mb-md-3">
                         See what our customers have to<br class="d-none d-xl-block" />
                         say about their experience.
                     </p>
@@ -126,186 +126,33 @@ $configData = Helper::appClasses();
                     <div class="swiper-reviews-carousel overflow-hidden mb-5 pb-md-2 pb-md-3">
                         <div class="swiper" id="swiper-reviews">
                             <div class="swiper-wrapper">
+                                @foreach ($testimonials as $key => $testimonial)
                                 <div class="swiper-slide">
                                     <div class="card h-100">
                                         <div class="card-body text-body d-flex flex-column justify-content-between h-100">
-                                            <div class="mb-3">
-                                                <img src="{{ asset('assets/img/front-pages/branding/logo-1.png') }}" alt="client logo" class="client-logo img-fluid" />
-                                            </div>
                                             <p>
-                                                “Vuexy is hands down the most useful front end Bootstrap theme I've ever
-                                                used. I can't wait
-                                                to use it again for my next project.”
+                                                “{{ $testimonial->comment }}”
                                             </p>
                                             <div class="text-warning mb-3">
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
+                                                @for($i = 0;$i < $testimonial->star;$i++)
+                                                    <i class="ti ti-star-filled ti-sm"></i>
+                                                    @endfor
                                             </div>
                                             <div class="d-flex align-items-center">
                                                 <div class="avatar me-2 avatar-sm">
-                                                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt="Avatar" class="rounded-circle" />
+                                                    <img src="http://127.0.0.1:8000/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle">
                                                 </div>
                                                 <div>
-                                                    <h6 class="mb-0">Cecilia Payne</h6>
-                                                    <p class="small text-muted mb-0">CEO of Airbnb</p>
+                                                    <h6 class="mb-0">{{ $testimonial->name }}</h6>
+                                                    <p class="small text-muted mb-0">Customer</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="card h-100">
-                                        <div class="card-body text-body d-flex flex-column justify-content-between h-100">
-                                            <div class="mb-3">
-                                                <img src="{{ asset('assets/img/front-pages/branding/logo-2.png') }}" alt="client logo" class="client-logo img-fluid" />
-                                            </div>
-                                            <p>
-                                                “I've never used a theme as versatile and flexible as Vuexy. It's my go
-                                                to for building
-                                                dashboard sites on almost any project.”
-                                            </p>
-                                            <div class="text-warning mb-3">
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar me-2 avatar-sm">
-                                                    <img src="{{ asset('assets/img/avatars/2.png') }}" alt="Avatar" class="rounded-circle" />
-                                                </div>
-                                                <div>
-                                                    <h6 class="mb-0">Eugenia Moore</h6>
-                                                    <p class="small text-muted mb-0">Founder of Hubspot</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="card h-100">
-                                        <div class="card-body text-body d-flex flex-column justify-content-between h-100">
-                                            <div class="mb-3">
-                                                <img src="{{ asset('assets/img/front-pages/branding/logo-3.png') }}" alt="client logo" class="client-logo img-fluid" />
-                                            </div>
-                                            <p>
-                                                This template is really clean & well documented. The docs are really
-                                                easy to understand and
-                                                it's always easy to find a screenshot from their website.
-                                            </p>
-                                            <div class="text-warning mb-3">
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar me-2 avatar-sm">
-                                                    <img src="{{ asset('assets/img/avatars/3.png') }}" alt="Avatar" class="rounded-circle" />
-                                                </div>
-                                                <div>
-                                                    <h6 class="mb-0">Curtis Fletcher</h6>
-                                                    <p class="small text-muted mb-0">Design Lead at Dribbble</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="card h-100">
-                                        <div class="card-body text-body d-flex flex-column justify-content-between h-100">
-                                            <div class="mb-3">
-                                                <img src="{{ asset('assets/img/front-pages/branding/logo-4.png') }}" alt="client logo" class="client-logo img-fluid" />
-                                            </div>
-                                            <p>
-                                                All the requirements for developers have been taken into consideration,
-                                                so I’m able to build
-                                                any interface I want.
-                                            </p>
-                                            <div class="text-warning mb-3">
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star ti-sm"></i>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar me-2 avatar-sm">
-                                                    <img src="{{ asset('assets/img/avatars/4.png') }}" alt="Avatar" class="rounded-circle" />
-                                                </div>
-                                                <div>
-                                                    <h6 class="mb-0">Sara Smith</h6>
-                                                    <p class="small text-muted mb-0">Founder of Continental</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="card h-100">
-                                        <div class="card-body text-body d-flex flex-column justify-content-between h-100">
-                                            <div class="mb-3">
-                                                <img src="{{ asset('assets/img/front-pages/branding/logo-5.png') }}" alt="client logo" class="client-logo img-fluid" />
-                                            </div>
-                                            <p>
-                                                “I've never used a theme as versatile and flexible as Vuexy. It's my go
-                                                to for building
-                                                dashboard sites on almost any project.”
-                                            </p>
-                                            <div class="text-warning mb-3">
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar me-2 avatar-sm">
-                                                    <img src="{{ asset('assets/img/avatars/5.png') }}" alt="Avatar" class="rounded-circle" />
-                                                </div>
-                                                <div>
-                                                    <h6 class="mb-0">Eugenia Moore</h6>
-                                                    <p class="small text-muted mb-0">Founder of Hubspot</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="card h-100">
-                                        <div class="card-body text-body d-flex flex-column justify-content-between h-100">
-                                            <div class="mb-3">
-                                                <img src="{{ asset('assets/img/front-pages/branding/logo-6.png') }}" alt="client logo" class="client-logo img-fluid" />
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam nemo
-                                                mollitia, ad eum
-                                                officia numquam nostrum repellendus consequuntur!
-                                            </p>
-                                            <div class="text-warning mb-3">
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star-filled ti-sm"></i>
-                                                <i class="ti ti-star ti-sm"></i>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar me-2 avatar-sm">
-                                                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt="Avatar" class="rounded-circle" />
-                                                </div>
-                                                <div>
-                                                    <h6 class="mb-0">Sara Smith</h6>
-                                                    <p class="small text-muted mb-0">Founder of Continental</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+
                             </div>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
@@ -313,7 +160,7 @@ $configData = Helper::appClasses();
                     </div>
                 </div>
             </div>
-        <!-- Logo slider: End -->
+            <!-- Logo slider: End -->
     </section>
     <!-- Real customers reviews: End -->
 
@@ -337,10 +184,7 @@ $configData = Helper::appClasses();
     <!-- Contact Us: Start -->
     <section id="landingContact" class="section-py bg-body landing-contact">
         <div class="container">
-            <div class="text-center mb-3 pb-1">
-                <span class="badge bg-label-primary">Contact US</span>
-            </div>
-            <h3 class="text-center mb-1"><span class="section-title">Let's work</span> together</h3>
+            <h3 class="text-center mb-1"><span class="section-title">Contact Us</span></h3>
             <p class="text-center mb-4 mb-lg-5 pb-md-3">Any question or remark? just write us a message</p>
             <div class="row gy-4">
                 <div class="col-lg-5">

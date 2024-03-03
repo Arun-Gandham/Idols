@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('comment');
+            $table->integer('star')->default(5);
             $table->timestamps();
         });
     }

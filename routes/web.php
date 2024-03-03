@@ -14,6 +14,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\FrontPageController;
+use App\Http\Controllers\TestimonialContorller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -177,6 +178,22 @@ Route::middleware('auth')->group(function () {
 
     // Invoice
     Route::get('/Invoice/{orderId}/download', [InvoiceController::class, 'downloadInvoice'])->name('download.invoice');
+
+    // Testimonials
+
+    Route::get('/testimonials', [TestimonialContorller::class, 'List'])->name('testimonials.list');
+
+    Route::get('/testimonials/add', [TestimonialContorller::class, 'add'])->name('testimonials.add');
+
+    Route::post('/testimonials/add/submit', [TestimonialContorller::class, 'addSubmit'])->name('testimonials.add.submit');
+
+    Route::get('/testimonials/edit/{id}', [TestimonialContorller::class, 'edit'])->name('testimonials.edit');
+
+    Route::post('/testimonials/edit/submit', [TestimonialContorller::class, 'editSubmit'])->name('testimonials.edit.submit');
+
+    Route::get('/testimonials/delete/{id}', [TestimonialContorller::class, 'delete'])->name('testimonials.delete');
+
+
 
     // forgot password
     Route::post('/forgot-password/submit', [PasswordResetLinkController::class, 'passwordResetSubmit'])->name('password.reset.submit');

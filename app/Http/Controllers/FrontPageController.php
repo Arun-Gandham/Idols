@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductType;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class FrontPageController extends Controller
@@ -11,6 +12,7 @@ class FrontPageController extends Controller
     {
         $pageConfigs = ['myLayout' => 'front'];
         $productTypes = ProductType::all();
-        return view('templates.front.landing-page',compact('pageConfigs','productTypes'));
+        $testimonials = Testimonial::orderBy('id','DESC')->get();
+        return view('templates.front.landing-page',compact('pageConfigs','productTypes','testimonials'));
     }
 }

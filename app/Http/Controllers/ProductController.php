@@ -30,13 +30,29 @@ class ProductController extends Controller
         return view('templates.pages.product_deleted_list', compact('products', 'pageSettings'));
     }
 
+    private function Modelyears()
+    {
+        $currentYear = date('Y');
+        $years = [];
+        $years[] = $currentYear;
+        for ($i = 1; $i <= 4; $i++) {
+            $years[] = $currentYear - $i;
+        }
+        for ($i = 1; $i <= 4; $i++) {
+            $years[] = $currentYear + $i;
+        }
+        sort($years);
+        return $years;
+    }
+
     public function add()
     {
 
         $pageSettings['title'] = "Add Product";
         $types = ProductType::all();
         $feets = ProductFeet::all();
-        return view('templates.pages.forms.product_form', compact('types', 'feets', 'pageSettings'));
+        $models = $this->Modelyears();
+        return view('templates.pages.forms.product_form', compact('types', 'feets', 'pageSettings','models'));
     }
 
     public function delete($id)
@@ -59,9 +75,10 @@ class ProductController extends Controller
         if (!$product) {
             return redirect()->back()->with('error', 'Product not exist!!!');
         }
+        $models = $this->Modelyears();
         $types = ProductType::all();
         $feets = ProductFeet::all();
-        return view('templates.pages.forms.product_form', compact('product', 'types', 'feets', 'pageSettings'));
+        return view('templates.pages.forms.product_form', compact('product', 'types', 'feets', 'pageSettings','models'));
     }
 
     public function editSubmit(Request $req)
@@ -80,7 +97,7 @@ class ProductController extends Controller
         $product->pancha_saree_color = $req->pancha_saree_color;
         $product->type_id = $req->type_id;
         $product->created_by = auth()->user()->id;
-        $product->model = 2023;
+        $product->model = $req->model;
         $product->status = $req->status ? 1 : 0;
         $product->stock = $req->stock;
 
@@ -128,7 +145,7 @@ class ProductController extends Controller
         $InsertData['pancha_saree_color'] = $req->pancha_saree_color;
         $InsertData['type_id'] = $req->type_id;
         $InsertData['created_by'] = auth()->user()->id;
-        $InsertData['model'] = 2023;
+        $InsertData['model'] = $req->model;
         $InsertData['status'] = $req->status ? 1 : 0;
         $InsertData['stock'] = $req->stock;
         $product = Product::create($InsertData);

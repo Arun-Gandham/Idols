@@ -88,78 +88,27 @@
             <form class="card-body" method="POST" action="{{ isset($user) ? route('users.edit.submit') : route('users.add.submit') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="image-outer d-flex flex-column">
-                            
-                            <div id="imagePreview" class="image-preview">
-                                @if(isset($user) && $user->photo)
-                                <div class='d-flex flex-column'>
-                                    <img src="{{ asset($user->photo) }}" alt="Image Preview" style="max-width: 100%; max-height: 200px;">
-                                    <label for="imageUpload" id="uploadButton" class="button">Upload Profile Picture</label>
-                                </div>
-                                @endif
-                            </div>
-                            <label for="imageUpload" id="uploadButton" style="{{ isset($user->photo) ? 'display:none' : '' }}" class="button">Upload Profile Picture</label>
-                            <input type="file" id="imageUpload" name="photo" accept="image/*" style="display: none;" {{ !isset($user) ? "required" : "" }}>
+                    <div class="col-md-6">
+                        <label class="col-sm-3 col-form-label" for="multicol-username">Website Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="multicol-username" class="form-control" placeholder="Name" name="name" value="{{ isset($user) ? $user->name : '' }}" required>
                         </div>
                     </div>
-                    <div class="col-md-9">
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="col-sm-3 col-form-label" for="multicol-username">Name</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="multicol-username" class="form-control" placeholder="Name" name="name" value="{{ isset($user) ? $user->name : '' }}" required>
-                                </div>
+                    <div class="col-md-4">
+                        <label class="col-sm-12 col-form-label" for="multicol-username">Model Year</label>
+                        <div class="col-sm-11">
+                            <select class="form-select" name="model" required="">
+                                @foreach ($years as $year)
+                                <option {{ isset($settings) ? ($settings->model == $year ? 'selected' : '') : (date('Y') === $year ? 'selected' : '' ) }} value="{{ $year }}">{{ $year }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="pt-4">
+                        <div class="row justify-content-start">
+                            <div class="col-sm-9">
+                                <button type="submit" class="btn btn-primary me-sm-2 me-1 waves-effect waves-light">{{ isset($user) ? 'Update' : 'Submit' }}</button>
                             </div>
-                            <div class="col-md-6">
-                                <label class="col-sm-3 col-form-label" for="multicol-username">Age</label>
-                                <div class="col-sm-9">
-                                    <input type="number" id="multicol-username" class="form-control" placeholder="Age" name="age" value="{{ isset($user) ? $user->age : '' }}" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="col-sm-3 col-form-label" for="multicol-username">Phone</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="multicol-username" class="form-control" placeholder="Phone" name="phone" value="{{ isset($user) ? $user->phone : '' }}" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="col-sm-3 col-form-label" for="multicol-username">Email</label>
-                                <div class="col-sm-9">
-                                    <input type="email" id="multicol-username" class="form-control" placeholder="Email" name="email" value="{{ isset($user) ? $user->email : '' }}" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="col-sm-3 col-form-label" for="multicol-username">Password</label>
-                                <div class="col-sm-9">
-                                    <input type="hidden" name="id" value="{{ isset($user) ? $user->id : '' }}">
-                                    <input type="text" id="multicol-username" class="form-control" placeholder="password" name="password" {{ isset($user) ? '' : 'required' }}>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="col-sm-9 mt-3">
-                                    <label class="switch switch-success">
-                                        <input type="checkbox" class="switch-input" name="status" {{ isset($user) ? ($user->is_active === 1 ? "checked" :  "") : 'checked' }} />
-                                        <span class="switch-toggle-slider">
-                                            <span class="switch-on">
-                                                <i class="ti ti-check"></i>
-                                            </span>
-                                            <span class="switch-off">
-                                                <i class="ti ti-x"></i>
-                                            </span>
-                                        </span>
-                                        <span class="switch-label">Status</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="pt-4">
-                                <div class="row justify-content-start">
-                                    <div class="col-sm-9">
-                                        <button type="submit" class="btn btn-primary me-sm-2 me-1 waves-effect waves-light">{{ isset($user) ? 'Update' : 'Submit' }}</button>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>

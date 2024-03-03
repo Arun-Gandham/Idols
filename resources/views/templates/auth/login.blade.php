@@ -56,7 +56,7 @@
                     </div>
                     <!-- /Logo -->
                     <h3 class=" mb-1">Welcome to {{ config('variables.templateName') }}! 👋</h3>
-                    <p class="mb-4">Please sign-in to your account and start the adventure</p>
+                    <p class="mb-4">Please sign-in to your dashboard and start the adventure</p>
                     @if ($error = session('error'))
                         <p class="text-danger">{{ $error }}</p>
                     @endif
@@ -69,16 +69,13 @@
                         @endif
                         @csrf
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email or Username</label>
-                            <input type="text" class="form-control" id="email" name="email"
-                                placeholder="Enter your email" autofocus>
+                            <label for="email" class="form-label">Email or Phone</label>
+                            <input type="text" class="form-control" id="email_phone" name="email_phone"
+                                placeholder="Enter your email/Phone" autofocus>
                         </div>
                         <div class="mb-3 form-password-toggle">
                             <div class="d-flex justify-content-between">
                                 <label class="form-label" for="password">Password</label>
-                                <a href="{{ route('password.request') }}">
-                                    <small>Forgot Password?</small>
-                                </a>
                             </div>
                             <div class="input-group input-group-merge">
                                 <input type="password" id="password" class="form-control" name="password"

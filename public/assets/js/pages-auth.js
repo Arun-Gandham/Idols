@@ -43,6 +43,17 @@ document.addEventListener('DOMContentLoaded', function (e) {
               }
             }
           },
+          'email_phone': {
+            validators: {
+              notEmpty: {
+                message: 'Please enter email / phone'
+              },
+              stringLength: {
+                min: 10,
+                message: 'Phone number must be more than 10 characters'
+              }
+            }
+          },
           password: {
             validators: {
               notEmpty: {

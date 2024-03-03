@@ -43,18 +43,9 @@ $configData = Helper::appClasses();
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <h1 class="text-primary hero-title display-6 fw-bold">Sri Venkata Naga Vaishnavi Idols</h1>
-                    <h2 class="hero-sub-title h6 mb-4 pb-1">
-                        Welcome to our pop idols company, where we infuse every creation with deep devotion. Our Ganesh
-                        and Durga Ammavaru idols, crafted from clay, exude a divine presence. Each piece is meticulously
-                        sculpted to reflect real emotions, ensuring a spiritual connection with the divine. Bring home
-                        the essence of tradition and devotion with our lifelike idols, designed to inspire reverence and
-                        faith.
-                    </h2>
+                    <h1 class="text-primary hero-title display-6 fw-bold">{{ isset($settings->name) ? $settings->name : '' }}</h1>
+                    <h2 class="hero-sub-title h6 mb-4 pb-1">{{ isset($settings->description) ? $settings->description : '' }}</h2>
                     <div class="landing-hero-btn d-inline-block position-relative">
-                        {{-- <span class="hero-btn-item position-absolute d-none d-md-flex text-heading">Join community
-                                <img src="{{ asset('assets/img/front-pages/icons/Join-community-arrow.png') }}"
-                        alt="Join community arrow" class="scaleX-n1-rtl" /></span> --}}
                         <a href="#idols" class="btn btn-primary btn-lg">Show Idols</a>
                     </div>
                 </div>
@@ -198,7 +189,7 @@ $configData = Helper::appClasses();
                                         <div>
                                             <p class="mb-0">Email</p>
                                             <h5 class="mb-0">
-                                                <a href="mailto:example@gmail.com" class="text-heading">example@gmail.com</a>
+                                                <a href="{{ isset($settings->email) ? $settings->email : '' }}" class="text-heading">{{ isset($settings->email) ? $settings->email : '' }}</a>
                                             </h5>
                                         </div>
                                     </div>
@@ -210,8 +201,7 @@ $configData = Helper::appClasses();
                                         </div>
                                         <div>
                                             <p class="mb-0">Phone</p>
-                                            <h5 class="mb-0"><a href="tel:+1234-568-963" class="text-heading">+1234
-                                                    568 963</a></h5>
+                                            <h5 class="mb-0"><a href="tel:{{ isset($settings->phone) ? $settings->phone : '' }}" class="text-heading">+91 {{ isset($settings->phone) ? $settings->phone : '' }}</a></h5>
                                         </div>
                                     </div>
                                 </div>

@@ -176,6 +176,8 @@ Route::middleware('auth')->group(function () {
     // Settings
     Route::get('/settings', [SettingsController::class, 'viewSettings'])->name('settings');
 
+    Route::post('/settings/update', [SettingsController::class, 'updateSettings'])->name('settings.update');
+
     // Invoice
     Route::get('/Invoice/{orderId}/download', [InvoiceController::class, 'downloadInvoice'])->name('download.invoice');
 

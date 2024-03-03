@@ -92,7 +92,7 @@ class OrderController extends Controller
 
     public function addSubmit(Request $req)
     {
-        $InsertData['model'] = 123;
+        $InsertData['model'] = date('Y');
         $InsertData['name'] = $req->name;
         $InsertData['phone1'] = $req->phone1;
         $InsertData['phone2'] = $req->phone2;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
@@ -26,6 +27,33 @@ class SettingsController extends Controller
     {
         $pageSettings['title'] = "Settings";
         $years = $this->Modelyears();
-        return view('templates.pages.settings',compact('pageSettings','years'));
+        $settings = Setting::first();
+        if(!$settings)
+        {
+            $settings = null;
+        }
+        return view('templates.pages.settings',compact('pageSettings','years','settings'));
     }
+
+    public function updateSettings(Request $req)
+    {
+        $settings = Setting::first();
+        if(!$settings)
+        {
+            $settings = new Setting();
+        }
+        $settings->name = $req->name;
+        $settings->description = $req->description;
+        $settings->email = $req->email;
+        $settings->phone = $req->phone;
+        $settings->model = $req->model;
+        if ($settings->save()) {
+            return redirect()->route('settings')->with('success', 'Successfully updated');
+        } else {
+            return redirect()->route('settings;')->with('error', 'Something went wrong');
+        }
+
+    }
+
+
 }

@@ -85,15 +85,59 @@
     <!-- Form Separator -->
     <div class="col">
         <div class="card mb-4">
-            <form class="card-body" method="POST" action="{{ isset($user) ? route('users.edit.submit') : route('users.add.submit') }}" enctype="multipart/form-data">
+            <form class="card-body" method="POST" action="{{ route('settings.update') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
+                    <small>Front Page Settings</small>
                     <div class="col-md-6">
                         <label class="col-sm-3 col-form-label" for="multicol-username">Website Name</label>
                         <div class="col-sm-9">
-                            <input type="text" id="multicol-username" class="form-control" placeholder="Name" name="name" value="{{ isset($user) ? $user->name : '' }}" required>
+                            <input type="text" id="multicol-username" class="form-control" placeholder="Name" name="name" value="{{ isset($settings) ? $settings->name : '' }}" required>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <label class="col-sm-3 col-form-label" for="multicol-username">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" id="multicol-username" class="form-control" placeholder="Email" name="email" value="{{ isset($settings) ? $settings->email : '' }}" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-sm-3 col-form-label" for="multicol-username">Phone Number</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="multicol-username" class="form-control" placeholder="Phone" name="phone" value="{{ isset($settings) ? $settings->phone : '' }}" required>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <div class="image-outer d-flex flex-column  p-2">
+                            <input type="file" id="imageUpload" name="thumbnail" accept="image/*" style="display: none;" {{ !isset($product) ? 'required' : '' }}>
+                            <div id="imagePreview" class="image-preview">
+                                @if (isset($product) && $product->thumbnail)
+                                <div class='d-flex flex-column'>
+                                    <img src="{{ asset($product->thumbnail) }}" alt="Image Preview" style="max-width: 100%; max-height: 200px;">
+                                    <label for="imageUpload" id="uploadButton" class="button">Upload Profile
+                                        Picture</label>
+                                </div>
+                                @endif
+                            </div>
+                            <label for="imageUpload" id="uploadButton" style="{{ isset($product->thumbnail) ? 'display:none' : '' }}" class="button">Logo</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="image-outer d-flex flex-column  p-2">
+                            <input type="file" id="faviconupload" name="thumbnail" accept="image/*" style="display: none;" {{ !isset($product) ? 'required' : '' }}>
+                            <div id="faviconPreview" class="image-preview">
+                                @if (isset($product) && $product->thumbnail)
+                                <div class='d-flex flex-column'>
+                                    <img src="{{ asset($product->thumbnail) }}" alt="Image Preview" style="max-width: 100%; max-height: 200px;">
+                                    <label for="imageUpload" id="uploadfavicon" class="button">Upload Profile
+                                        Picture</label>
+                                </div>
+                                @endif
+                            </div>
+                            <label for="imageUpload" id="uploadfavicon" style="{{ isset($product->thumbnail) ? 'display:none' : '' }}" class="button">Favicon</label>
+                        </div>
+                    </div> -->
                     <div class="col-md-4">
                         <label class="col-sm-12 col-form-label" for="multicol-username">Model Year</label>
                         <div class="col-sm-11">
@@ -102,6 +146,13 @@
                                 <option {{ isset($settings) ? ($settings->model == $year ? 'selected' : '') : (date('Y') === $year ? 'selected' : '' ) }} value="{{ $year }}">{{ $year }}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="col-sm-3 col-form-label" for="multicol-username">Website Description</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" placeholder="Say it" rows="9" required name="description">{{ isset($settings) ? $settings->description : '' }}</textarea>
                         </div>
                     </div>
                     <div class="pt-4">
@@ -124,6 +175,19 @@
             reader.onload = function(event) {
                 const imageUrl = event.target.result;
                 const imagePreview = document.getElementById('imagePreview');
+                imagePreview.innerHTML = `<img src="${imageUrl}" alt="Image Preview" style="max-width: 100%; max-height: 200px;">`;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    document.getElementById('faviconupload').addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const imageUrl = event.target.result;
+                const imagePreview = document.getElementById('faviconPreview');
                 imagePreview.innerHTML = `<img src="${imageUrl}" alt="Image Preview" style="max-width: 100%; max-height: 200px;">`;
             }
             reader.readAsDataURL(file);

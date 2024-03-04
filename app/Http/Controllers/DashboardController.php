@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function Home()
     {
-        return view('templates.pages.dashboard');
+        $settings = Setting::first();
+        $revenueGenerated = 
+        $products = Product::where('model',$settings->model)->get();
+        return view('templates.pages.dashboard',compact('products'));
     }
 }

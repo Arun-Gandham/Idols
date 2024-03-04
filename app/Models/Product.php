@@ -38,6 +38,11 @@ class Product extends Model
         }
         return $orderStatus->count();
     }
+    public function getOrderStatusSum()
+    {
+        $orderStatus = $this->orders();
+        return $orderStatus->sum('price');
+    }
 
     public function feet()
     {

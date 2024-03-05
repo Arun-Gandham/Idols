@@ -206,7 +206,7 @@
                                 <div class="row justify-content-start">
                                     <div class="col-sm-11">
                                         <input type="hidden" name="id" value="{{ isset($product) ? $product->id : null }}">
-                                        <button type="submit" class="btn btn-primary me-sm-2 me-1 waves-effect waves-light">{{ isset($product) ? 'Update' : 'Submit' }}</button>
+                                        <button type="submit" class="btn btn-primary me-sm-2 me-1 waves-effect waves-light"><i class='fa-solid fa-{{ isset($product) ? "cloud-arrow-up" : "save" }}'></i> &nbsp; {{ isset($product) ? 'Update' : 'Save' }}</button>
                                         <button class="btn btn-label-secondary waves-effect" type="button"><a href="{{ route('product.list') }}">Cancel</a></button>
                                     </div>
                                 </div>

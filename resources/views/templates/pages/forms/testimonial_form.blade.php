@@ -64,7 +64,7 @@
                                 <div class="col-sm-9">
                                     <input type="hidden" name="id" value="{{ isset($testimonial) ? $testimonial->id : '' }}">
                                     <button type="submit"
-                                        class="btn btn-primary me-sm-2 me-1 waves-effect waves-light">{{ isset($testimonial) ? 'Update' : 'Submit' }}</button>
+                                        class="btn btn-primary me-sm-2 me-1 waves-effect waves-light"><i class='fa-solid fa-{{ isset($testimonial) ? "cloud-arrow-up" : "save" }}'></i> &nbsp; {{ isset($testimonial) ? 'Update' : 'Save' }}</button>
                                     <button class="btn btn-label-secondary waves-effect"><a
                                             href="{{ route('role.list') }}">Cancel</a></button>
                                 </div>

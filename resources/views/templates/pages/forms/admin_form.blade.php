@@ -175,7 +175,7 @@
                                     <div class="row justify-content-start">
                                         <div class="col-sm-9">
                                             <button type="submit"
-                                                class="btn btn-primary me-sm-2 me-1 waves-effect waves-light">{{ isset($user) ? 'Update' : 'Submit' }}</button>
+                                                class="btn btn-primary me-sm-2 me-1 waves-effect waves-light"><i class='fa-solid fa-{{ isset($user) ? "cloud-arrow-up" : "save" }}'></i> &nbsp; {{ isset($user) ? 'Update' : 'Save' }}</button>
                                             <button class="btn btn-label-secondary waves-effect" type="button"><a
                                                     href="{{ route('users.list') }}">Cancel</a></button>
                                         </div>

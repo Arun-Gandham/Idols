@@ -199,7 +199,7 @@
                                     <div class="col-sm-11">
                                         <input type="hidden" name="product_id" value="{{ isset($order) ? $order->product->id : ''}}" id="selected_product_id" required>
                                         <input type="hidden" name="id" value="{{ isset($order) ? $order->id : ''}}">
-                                        <button type="submit" class="btn btn-primary me-sm-2 me-1 waves-effect waves-light">{{ isset($order) ? 'Update' : 'Submit' }}</button>
+                                        <button type="submit" class="btn btn-primary me-sm-2 me-1 waves-effect waves-light"><i class='fa-solid fa-{{ isset($order) ? "cloud-arrow-up" : "save" }}'></i> &nbsp; {{ isset($order) ? 'Update' : 'Save' }}</button>
                                         <button class="btn btn-label-secondary waves-effect" type="button"><a href="{{ route('order.list') }}">Cancel</a></button>
                                     </div>
                                 </div>

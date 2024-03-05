@@ -94,7 +94,8 @@
                         <div class="row justify-content-start">
                             <div class="col-sm-11">
                                 <input type="hidden" name="order_id" value="{{$order->id}}">
-                                <button type="submit" class="btn btn-primary me-sm-2 me-1 waves-effect waves-light">Submit</button>
+                                <button type="submit" class="btn btn-primary me-sm-2 me-1 waves-effect waves-light"><i class="fa-solid fa-cloud-arrow-up"></i> &nbsp; Update</button>
+                                <button type="submit" class="btn btn-success me-sm-2 me-1 waves-effect waves-light"><i class="fa-brands fa-whatsapp"></i> &nbsp; Update & Whatsapp</button>
                             </div>
                         </div>
                     </div>

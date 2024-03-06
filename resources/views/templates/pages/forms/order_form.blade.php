@@ -98,6 +98,25 @@
         background: #DBDBDC;
         /* Color of the scrollbar handle on hover */
     }
+
+    @media only screen and (max-width: 600px) {
+        .product-outer img {
+            width: 100px !important;
+        }
+
+        .product-outer {
+            text-align: center;
+        }
+
+        .image-outer img {
+            max-width: 7rem;
+        }
+
+        #list {
+            overflow-y: auto;
+            max-height: 20rem;
+        }
+    }
 </style>
 
 <div class="row">
@@ -228,16 +247,13 @@
                 <div class="search-results">
                     <div id="list" class="d-flex flex-column items-list ">
                         @foreach ($products as $product)
-                        <li class="card mt-2 cursor-pointer hoverd-item" onclick="getProductDetails('{{ $product->id }}','{{ asset($product->thumbnail) }}','{{$product->name}}','{{$product->feet_id}}')">
-                            <div class="row">
-                                <div class="col-sm-4">
+                        <li class="card mt-2 cursor-pointer m-2" onclick="getProductDetails('{{ $product->id }}','{{ asset($product->thumbnail) }}','{{$product->name}}','{{$product->feet_id}}')">
+                            <div class="row product-outer">
+                                <div class="col-sm-4 ">
                                     <img src="{{ asset($product->thumbnail) }}" alt="{{ $product->name }}" class="w-100 m-2">
                                 </div>
                                 <div class="col-sm-8 product-details d-flex flex-column justify-content-center align-item-center">
-                                    <p>#{{ $product->id }}</p>
                                     <p class="title">{{ $product->name }}</h1>
-                                    <p class="desc">sfsfasdfa</p>
-                                    <p class="desc">sfsfasdfa</p>
                                     <p class="desc">sfsfasdfa</p>
                                 </div>
                             </div>

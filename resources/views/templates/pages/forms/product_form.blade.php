@@ -66,6 +66,16 @@
         margin: 10px;
         background: #fff;
     }
+
+    @media only screen and (max-width: 600px) {
+        .image-outer {
+            height: unset;
+        }
+
+        .image-outer img {
+            max-width: 7rem !important;
+        }
+    }
 </style>
 @if ($error = session('error'))
 <div class="alert alert-danger d-flex align-items-center alert-dismissible" role="alert">
@@ -173,7 +183,7 @@
                                 <div class="col-sm-11">
                                     <select class="form-select" name="model" required="">
                                         @foreach ($models as $year)
-                                            <option {{ isset($product) ? ($product->model == $year ? 'selected' : '') : (date('Y') === $year ? 'selected' : '' ) }} value="{{ $year }}">{{ $year }}</option>
+                                        <option {{ isset($product) ? ($product->model == $year ? 'selected' : '') : (date('Y') === $year ? 'selected' : '' ) }} value="{{ $year }}">{{ $year }}</option>
                                         @endforeach
                                     </select>
                                 </div>

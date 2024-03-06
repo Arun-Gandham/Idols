@@ -18,7 +18,7 @@ class ProductController extends Controller
     {
         $pageSettings['title'] = "Product List";
         $pageSettings['type'] = "Product";
-        $products = Product::where('is_deleted', 0)->orderBy('id', 'ASC')->get();
+        $products = Product::where('is_deleted', 0)->orderBy('id', 'DESC')->get();
         return view('templates.pages.product_list', compact('products', 'pageSettings'));
     }
 

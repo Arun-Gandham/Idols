@@ -22,6 +22,14 @@ class UserSeed extends Seeder
             'is_active' => 1
         ]);
 
+        DB::table('settings')->insert([
+            'name' => 'Sri Venkata Naga Vyshnavi Idols',
+            'description' => 'Embrace tradition. Timeless clay idols: crafted artistry, cultural elegance.Embrace tradition. Timeless clay idols: crafted artistry, cultural elegance.Embrace tradition. Timeless clay idols: crafted artistry, cultural elegance.Embrace tradition. Timeless clay idols: crafted artistry, cultural elegance.Embrace tradition. Timeless clay idols: crafted artistry, cultural elegance.Embrace tradition. Timeless clay idols: crafted artistry, cultural elegance.Embrace tradition. Timeless clay idols: crafted artistry, cultural elegance.Embrace tradition. Timeless clay idols: crafted artistry, cultural elegance.Embrace tradition. Timeless clay idols: crafted artistry, cultural elegance.Embrace tradition. Timeless clay idols: crafted artistry, cultural elegance.',
+            'model' => date('Y'),
+            'email' => "arunsaigandham1998@gmail.com", 
+            'phone' => '9121855669'
+        ]);
+
         DB::table('product_types')->insert([
             'name' => 'Ganapathi',
             'description' => 'Embrace tradition. Timeless clay idols: crafted artistry, cultural elegance.'

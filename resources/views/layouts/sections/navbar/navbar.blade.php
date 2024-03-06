@@ -127,11 +127,11 @@ $navbarDetached = $navbarDetached ?? '';
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li>
-                            <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
+                            <a class="dropdown-item" href="{{ route('user.profile.view',Auth::user()->id) }}">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 me-3">
                                         <div class="avatar avatar-online">
-                                            <img src="{{ Auth::user()  && isset(Auth::user()->photo) ? asset(Auth::user()->photo) : asset('assets/img/avatars/1.png') }}" alt class="h-auto rounded-circle">
+                                            <img src="{{ Auth::user()  && isset(Auth::user()->photo) ? asset(Auth::user()->photo) : asset('assets/img/website/default/profile.png') }}" alt class="h-auto rounded-circle">
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">

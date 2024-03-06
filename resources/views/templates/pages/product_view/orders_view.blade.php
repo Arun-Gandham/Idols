@@ -93,7 +93,7 @@
                                         <img src="{{ asset(isset($order->createdBy->photo) ? $order->createdBy->photo : 'assets/img/website/default/profile.png') }}" class="border rounded me-3" alt="Shoe img" height="62" width="62">
                                         <div>
                                             <p class="mb-0">Agent</p>
-                                            <span class="text-muted"><a href="{{ route('user.profile.view',$order->created_by) }}">{{ $order->createdBy->name }}</a></span>
+                                            <span class="text-muted"><a href="{{ route('users.profile.view',$order->created_by) }}">{{ $order->createdBy->name }}</a></span>
                                         </div>
                                     </div>
                                     <div class="mb-sm-0 mb-2">

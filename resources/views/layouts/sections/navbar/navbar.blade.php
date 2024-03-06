@@ -127,7 +127,7 @@ $navbarDetached = $navbarDetached ?? '';
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li>
-                            <a class="dropdown-item" href="{{ route('user.profile.view',Auth::user()->id) }}">
+                            <a class="dropdown-item" href="{{ route('users.profile.view',Auth::user()->id) }}">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 me-3">
                                         <div class="avatar avatar-online">

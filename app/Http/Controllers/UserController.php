@@ -76,9 +76,9 @@ class UserController extends Controller
         }
 
         if ($user->save()) {
-            return redirect()->route('user.profile.view', ['id' => $user->id])->with('success', 'Succesfully updated');
+            return redirect()->route('users.profile.view', ['id' => $user->id])->with('success', 'Succesfully updated');
         } else {
-            return redirect()->route('user.profile.view', ['id' => $user->id])->with('error', 'Something went wrong');
+            return redirect()->route('users.profile.view', ['id' => $user->id])->with('error', 'Something went wrong');
         }
     }
 

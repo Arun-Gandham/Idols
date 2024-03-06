@@ -169,7 +169,7 @@
                                     <img src="{{ asset(isset($order->createdBy->photo) ? $order->createdBy->photo : 'assets/img/website/default/profile.png') }}" alt="Avatar" class="rounded-circle" />
                                 </div>
                                 <div class="ms-1">
-                                    <h6 class="mb-0"><a href="{{ route('user.profile.view',$order->createdBy->id) }}">{{ $order->createdBy->name }}</a></h6>
+                                    <h6 class="mb-0"><a href="{{ route('users.profile.view',$order->createdBy->id) }}">{{ $order->createdBy->name }}</a></h6>
                                     <span><a ref="tel:{{ $order->createdBy->phone }}">{{ $order->createdBy->phone }}</a></span>
                                 </div>
                             </div>
@@ -210,7 +210,7 @@
                                     <img src="{{ asset(isset($timeline->createdBy->photo) ? $timeline->createdBy->photo : 'assets/img/website/default/profile.png') }}" alt="Avatar" class="rounded-circle" />
                                 </div>
                                 <div class="ms-1">
-                                    <h6 class="mb-0"><a href="{{ route('user.profile.view',$timeline->createdBy->id) }}">{{ $timeline->createdBy->name }}</a></h6>
+                                    <h6 class="mb-0"><a href="{{ route('users.profile.view',$timeline->createdBy->id) }}">{{ $timeline->createdBy->name }}</a></h6>
                                     <span><a ref="tel:{{ $timeline->createdBy->phone }}">{{ $timeline->createdBy->phone }}</a></span>
                                 </div>
                             </div>

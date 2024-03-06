@@ -48,7 +48,7 @@
             ]
         },
         {
-            "url": "/orders",
+            "url": "/order",
             "name": "Orders",
             "icon": "menu-icon tf-icons ti ti-shopping-cart",
             "slug": "orders",

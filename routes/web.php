@@ -51,150 +51,168 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'Home'])->name('dashboard');
 
     //User
+    Route::prefix('users')->name('users.')->group(function () {
 
-    Route::get('/users', [UserController::class, 'List'])->name('users.list');
+        Route::get('/', [UserController::class, 'List'])->name('list');
 
-    Route::get('/users/add', [UserController::class, 'add'])->name('users.add');
+        Route::get('/add', [UserController::class, 'add'])->name('add');
 
-    Route::get('/users/profile/{id}', [UserController::class, 'viewUserProfile'])->name('user.profile.view');
+        Route::get('/profile/{id}', [UserController::class, 'viewUserProfile'])->name('profile.view');
 
-    Route::post('/users/add/submit', [UserController::class, 'addSubmit'])->name('users.add.submit');
+        Route::post('/add/submit', [UserController::class, 'addSubmit'])->name('add.submit');
 
-    Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+        Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
 
-    Route::post('/users/edit/submit', [UserController::class, 'editSubmit'])->name('users.edit.submit');
+        Route::post('/edit/submit', [UserController::class, 'editSubmit'])->name('edit.submit');
 
-    Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('users.delete');
+        Route::get('/delete/{id}', [UserController::class, 'delete'])->name('delete');
+    });
 
     // Product Feet
+    Route::prefix('feet')->name('feet.')->group(function () {
 
-    Route::get('/feet', [ProductFeetController::class, 'List'])->name('feet.list');
+        Route::get('/', [ProductFeetController::class, 'List'])->name('list');
 
-    Route::get('/feet/add', [ProductFeetController::class, 'add'])->name('feet.add');
+        Route::get('/add', [ProductFeetController::class, 'add'])->name('add');
 
-    Route::post('/feet/add/submit', [ProductFeetController::class, 'addSubmit'])->name('feet.add.submit');
+        Route::post('/add/submit', [ProductFeetController::class, 'addSubmit'])->name('add.submit');
 
-    Route::get('/feet/edit/{id}', [ProductFeetController::class, 'edit'])->name('feet.edit');
+        Route::get('/edit/{id}', [ProductFeetController::class, 'edit'])->name('edit');
 
-    Route::post('/feet/edit/submit', [ProductFeetController::class, 'editSubmit'])->name('feet.edit.submit');
+        Route::post('/edit/submit', [ProductFeetController::class, 'editSubmit'])->name('edit.submit');
 
-    Route::get('/feet/delete/{id}', [ProductFeetController::class, 'delete'])->name('feet.delete');
+        Route::get('/delete/{id}', [ProductFeetController::class, 'delete'])->name('delete');
+    });
 
     // Product Type
+    Route::prefix('type')->name('type.')->group(function () {
 
-    Route::get('/type', [ProductTypeController::class, 'List'])->name('type.list');
+        Route::get('/', [ProductTypeController::class, 'List'])->name('list');
 
-    Route::get('/type/add', [ProductTypeController::class, 'add'])->name('type.add');
+        Route::get('/add', [ProductTypeController::class, 'add'])->name('add');
 
-    Route::post('/type/add/submit', [ProductTypeController::class, 'addSubmit'])->name('type.add.submit');
+        Route::post('/add/submit', [ProductTypeController::class, 'addSubmit'])->name('add.submit');
 
-    Route::get('/type/edit/{id}', [ProductTypeController::class, 'edit'])->name('type.edit');
+        Route::get('/edit/{id}', [ProductTypeController::class, 'edit'])->name('edit');
 
-    Route::post('/type/edit/submit', [ProductTypeController::class, 'editSubmit'])->name('type.edit.submit');
+        Route::post('/edit/submit', [ProductTypeController::class, 'editSubmit'])->name('edit.submit');
 
-    Route::get('/type/delete/{id}', [ProductTypeController::class, 'delete'])->name('type.delete');
+        Route::get('/delete/{id}', [ProductTypeController::class, 'delete'])->name('delete');
+    });
 
     // User Roles
+    Route::prefix('role')->name('role.')->group(function () {
 
-    Route::get('/role', [RoleController::class, 'List'])->name('role.list');
+        Route::get('/', [RoleController::class, 'List'])->name('list');
 
-    Route::get('/role/add', [RoleController::class, 'add'])->name('role.add');
+        Route::get('/add', [RoleController::class, 'add'])->name('add');
 
-    Route::post('/role/add/submit', [RoleController::class, 'addSubmit'])->name('role.add.submit');
+        Route::post('/add/submit', [RoleController::class, 'addSubmit'])->name('add.submit');
 
-    Route::get('/role/edit/{id}', [RoleController::class, 'edit'])->name('role.edit');
+        Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('edit');
 
-    Route::post('/role/edit/submit', [RoleController::class, 'editSubmit'])->name('role.edit.submit');
+        Route::post('/edit/submit', [RoleController::class, 'editSubmit'])->name('edit.submit');
 
-    Route::get('/role/delete/{id}', [RoleController::class, 'delete'])->name('role.delete');
+        Route::get('/delete/{id}', [RoleController::class, 'delete'])->name('delete');
+    });
 
     // Product
+    Route::prefix('product')->name('product.')->group(function () {
 
-    Route::get('/product', [ProductController::class, 'List'])->name('product.list');
+        Route::get('/', [ProductController::class, 'List'])->name('list');
 
-    Route::get('/product/add', [ProductController::class, 'add'])->name('product.add');
+        Route::get('/add', [ProductController::class, 'add'])->name('add');
 
-    Route::post('/product/add/submit', [ProductController::class, 'addSubmit'])->name('product.add.submit');
+        Route::post('/add/submit', [ProductController::class, 'addSubmit'])->name('add.submit');
 
-    Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
+        Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('edit');
 
-    Route::post('/product/edit/submit', [ProductController::class, 'editSubmit'])->name('product.edit.submit');
+        Route::post('/edit/submit', [ProductController::class, 'editSubmit'])->name('edit.submit');
 
-    Route::get('/product/{id}/delete', [ProductController::class, 'delete'])->name('product.delete');
+        Route::get('/{id}/delete', [ProductController::class, 'delete'])->name('delete');
 
-    Route::get('/product/deleted/list', [ProductController::class, 'deletedList'])->name('product.deleted.list');
+        Route::get('/deleted/list', [ProductController::class, 'deletedList'])->name('deleted.list');
 
-    Route::get('/product/{id}/restore', [ProductController::class, 'restore'])->name('product.restore');
+        Route::get('/{id}/restore', [ProductController::class, 'restore'])->name('restore');
 
-    Route::get('/product/{id}/details', [ProductController::class, 'detailsView'])->name('product.details.view');
+        Route::get('/{id}/details', [ProductController::class, 'detailsView'])->name('details.view');
 
-    Route::get('/product/{id}/orders', [ProductController::class, 'ordersView'])->name('product.orders.view');
+        Route::get('/{id}/orders', [ProductController::class, 'ordersView'])->name('orders.view');
 
-    Route::get('/product/{id}/teams', [ProductController::class, 'teamsView'])->name('product.teams.view');
+        Route::get('/{id}/teams', [ProductController::class, 'teamsView'])->name('teams.view');
 
-    Route::get('/product/{id}/stock', [ProductController::class, 'stockView'])->name('product.stock.view');
+        Route::get('/{id}/stock', [ProductController::class, 'stockView'])->name('stock.view');
 
-    Route::get('/product/{id}/other', [ProductController::class, 'otherView'])->name('product.other.view');
+        Route::get('/{id}/other', [ProductController::class, 'otherView'])->name('other.view');
+    });
 
     // Order Statuses
+    Route::prefix('order-status')->name('order.status.')->group(function () {
 
-    Route::get('/order-status', [OrderStatusController::class, 'List'])->name('order.status.list');
+        Route::get('/order-status', [OrderStatusController::class, 'List'])->name('list');
 
-    Route::get('/order-status/add', [OrderStatusController::class, 'add'])->name('order.status.add');
+        Route::get('/add', [OrderStatusController::class, 'add'])->name('add');
 
-    Route::post('/order-status/add/submit', [OrderStatusController::class, 'addSubmit'])->name('order.status.add.submit');
+        Route::post('/add/submit', [OrderStatusController::class, 'addSubmit'])->name('add.submit');
 
-    Route::get('/order-status/{id}/edit', [OrderStatusController::class, 'edit'])->name('order.status.edit');
+        Route::get('/{id}/edit', [OrderStatusController::class, 'edit'])->name('edit');
 
-    Route::post('/order-status/edit/submit', [OrderStatusController::class, 'editSubmit'])->name('order.status.edit.submit');
+        Route::post('/edit/submit', [OrderStatusController::class, 'editSubmit'])->name('edit.submit');
 
-    Route::get('/order-status/{id}/delete', [OrderStatusController::class, 'delete'])->name('order.status.delete');
+        Route::get('/{id}/delete', [OrderStatusController::class, 'delete'])->name('delete');
+    });
 
     // Orders
+    Route::prefix('order')->name('orders.')->group(function () {
 
-    Route::get('/orders', [OrderController::class, 'list'])->name('orders.list');
+        Route::get('/', [OrderController::class, 'list'])->name('list');
 
-    Route::get('/orders/datatable', [OrderController::class, 'datatblesList'])->name('orders.list.datatables');
+        Route::get('/datatable', [OrderController::class, 'datatblesList'])->name('list.datatables');
 
-    Route::get('/order/add', [OrderController::class, 'add'])->name('orders.add');
+        Route::get('/add', [OrderController::class, 'add'])->name('add');
 
-    Route::post('/order/add/submit', [OrderController::class, 'addSubmit'])->name('orders.add.submit');
+        Route::post('/add/submit', [OrderController::class, 'addSubmit'])->name('add.submit');
 
-    Route::get('/order/{id}/edit', [OrderController::class, 'edit'])->name('orders.edit');
+        Route::get('/{id}/edit', [OrderController::class, 'edit'])->name('edit');
 
-    Route::post('/order/edit/submit', [OrderController::class, 'editSubmit'])->name('orders.edit.submit');
+        Route::post('/edit/submit', [OrderController::class, 'editSubmit'])->name('edit.submit');
 
-    Route::get('/order/{id}/delete', [OrderController::class, 'delete'])->name('orders.delete');
+        Route::get('/{id}/delete', [OrderController::class, 'delete'])->name('delete');
 
-    Route::get('/order/{id}/view', [OrderController::class, 'viewOrder'])->name('orders.view');
+        Route::get('/{id}/view', [OrderController::class, 'viewOrder'])->name('view');
 
-    Route::post('/order/update/status', [OrderController::class, 'updateOrderStatus'])->name('orders.update.status');
+        Route::post('/update/status', [OrderController::class, 'updateOrderStatus'])->name('update.status');
 
-    // Order Timeline 
-    Route::get('/order/{id}/timeline/delete', [OrderController::class, 'deleteOrderTimeline'])->name('orders.timeline.delete');
+        // Order Timeline 
+        Route::get('/order/{id}/timeline/delete', [OrderController::class, 'deleteOrderTimeline'])->name('orders.timeline.delete');
+    });
 
     // Settings
-    Route::get('/settings', [SettingsController::class, 'viewSettings'])->name('settings');
+    Route::prefix('settings')->name('settings.')->group(function () {
 
-    Route::post('/settings/update', [SettingsController::class, 'updateSettings'])->name('settings.update');
+        Route::get('/', [SettingsController::class, 'viewSettings'])->name('');
+
+        Route::post('/update', [SettingsController::class, 'updateSettings'])->name('update');
+    });
 
     // Invoice
     Route::get('/Invoice/{orderId}/download', [InvoiceController::class, 'downloadInvoice'])->name('download.invoice');
 
     // Testimonials
+    Route::prefix('testimonials')->name('testimonials.')->group(function () {
 
-    Route::get('/testimonials', [TestimonialContorller::class, 'List'])->name('testimonials.list');
+        Route::get('/', [TestimonialContorller::class, 'List'])->name('list');
 
-    Route::get('/testimonials/add', [TestimonialContorller::class, 'add'])->name('testimonials.add');
+        Route::get('/add', [TestimonialContorller::class, 'add'])->name('add');
 
-    Route::post('/testimonials/add/submit', [TestimonialContorller::class, 'addSubmit'])->name('testimonials.add.submit');
+        Route::post('/add/submit', [TestimonialContorller::class, 'addSubmit'])->name('add.submit');
 
-    Route::get('/testimonials/edit/{id}', [TestimonialContorller::class, 'edit'])->name('testimonials.edit');
+        Route::get('/edit/{id}', [TestimonialContorller::class, 'edit'])->name('edit');
 
-    Route::post('/testimonials/edit/submit', [TestimonialContorller::class, 'editSubmit'])->name('testimonials.edit.submit');
+        Route::post('/edit/submit', [TestimonialContorller::class, 'editSubmit'])->name('edit.submit');
 
-    Route::get('/testimonials/delete/{id}', [TestimonialContorller::class, 'delete'])->name('testimonials.delete');
-
+        Route::get('/delete/{id}', [TestimonialContorller::class, 'delete'])->name('delete');
+    });
 
 
     // forgot password

@@ -48,7 +48,7 @@
                 <div class="mx-auto my-3">
                     <img src="{{ asset(isset($user->photo) ? $user->photo : 'assets/img/website/default/profile.png') }}" alt="Avatar Image" class="rounded-circle w-px-100" />
                 </div>
-                <a href="{{ route('user.profile.view',['id' => $user->id]) }}">
+                <a href="{{ route('users.profile.view',['id' => $user->id]) }}">
                     <h4 class="mb-1 card-title">{{ $user->name }}</h4>
                 </a>
                 <p class="m-0">Age : {{ $user->age }}</p>

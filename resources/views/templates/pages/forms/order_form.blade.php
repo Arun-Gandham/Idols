@@ -103,7 +103,7 @@
 <div class="row">
     <div class="col">
         <div class="card mb-4">
-            <form class="card-body" method="POST" action="{{ isset($order) ? route('order.edit.submit') : route('order.add.submit') }}" enctype="multipart/form-data">
+            <form class="card-body" method="POST" action="{{ isset($order) ? route('orders.edit.submit') : route('orders.add.submit') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-4">
@@ -200,7 +200,7 @@
                                         <input type="hidden" name="product_id" value="{{ isset($order) ? $order->product->id : ''}}" id="selected_product_id" required>
                                         <input type="hidden" name="id" value="{{ isset($order) ? $order->id : ''}}">
                                         <button type="submit" class="btn btn-primary me-sm-2 me-1 waves-effect waves-light"><i class='fa-solid fa-{{ isset($order) ? "cloud-arrow-up" : "save" }}'></i> &nbsp; {{ isset($order) ? 'Update' : 'Save' }}</button>
-                                        <button class="btn btn-label-secondary waves-effect" type="button"><a href="{{ route('order.list') }}">Cancel</a></button>
+                                        <button class="btn btn-label-secondary waves-effect" type="button"><a href="{{ route('orders.list') }}">Cancel</a></button>
                                     </div>
                                 </div>
                             </div>

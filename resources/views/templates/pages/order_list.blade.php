@@ -195,7 +195,7 @@ $configData = Helper::appClasses();
                 "orderable": false,
                 targets: [0, 1, 2, 3]
             }],
-            ajax: "{{ route('order.list.datatables') }}",
+            ajax: "{{ route('orders.list.datatables') }}",
             columns: [{
                     data: 'order_id',
                     name: 'order_id',

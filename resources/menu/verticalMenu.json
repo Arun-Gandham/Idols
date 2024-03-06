@@ -3,7 +3,7 @@
         {
             "url": "/dashboard",
             "name": "Dashboard",
-            "icon": "menu-icon tf-icons ti ti-smart-home",
+            "icon": "menu-icon tf-icons ti ti-presentation-analytics",
             "slug": "dashboard"
         },
         {
@@ -27,7 +27,7 @@
         {
             "url": "/product",
             "name": "Products",
-            "icon": "menu-icon tf-icons ti ti-files",
+            "icon": "menu-icon tf-icons ti ti-brand-producthunt",
             "slug": "product",
             "submenu": [
                 {
@@ -50,25 +50,25 @@
         {
             "url": "/orders",
             "name": "Orders",
-            "icon": "menu-icon tf-icons ti ti-files",
-            "slug": "order",
+            "icon": "menu-icon tf-icons ti ti-shopping-cart",
+            "slug": "orders",
             "submenu": [
                 {
                     "url": "orders",
                     "name": "List",
-                    "slug": "order.list"
+                    "slug": "orders.list"
                 },
                 {
                     "url": "order/add",
                     "name": "Add",
-                    "slug": "order.add"
+                    "slug": "orders.add"
                 }
             ]
         },
         {
             "url": "/type",
             "name": "Types",
-            "icon": "menu-icon tf-icons ti ti-lifebuoy",
+            "icon": "menu-icon tf-icons ti ti-list-check",
             "slug": "type",
             "submenu": [
                 {
@@ -86,7 +86,7 @@
         {
             "url": "/feet",
             "name": "Feet",
-            "icon": "menu-icon tf-icons ti ti-lifebuoy",
+            "icon": "menu-icon tf-icons ti ti-line-height",
             "slug": "feet",
             "submenu": [
                 {
@@ -104,7 +104,7 @@
         {
             "url": "/testimonials",
             "name": "Testimonials",
-            "icon": "menu-icon tf-icons ti ti-lifebuoy",
+            "icon": "menu-icon tf-icons ti ti-message",
             "slug": "testimonials",
             "submenu": [
                 {
@@ -122,7 +122,7 @@
         {
             "url": "/role",
             "name": "Roles",
-            "icon": "menu-icon tf-icons ti ti-lifebuoy",
+            "icon": "menu-icon tf-icons ti ti-users-plus",
             "slug": "role",
             "submenu": [
                 {
@@ -139,8 +139,8 @@
         },
         {
             "url": "/order-status",
-            "name": "Order Statuses",
-            "icon": "menu-icon tf-icons ti ti-lifebuoy",
+            "name": "Order Status",
+            "icon": "menu-icon tf-icons ti ti-shield-check",
             "slug": "order.status",
             "submenu": [
                 {

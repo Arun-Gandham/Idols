@@ -58,7 +58,7 @@
                                 <div class="d-flex flex-sm-row flex-column">
 
                                     <div class="w-100">
-                                        <p class="mb-1">Order Id : <strong><a href="{{ route('order.view',$order->id) }}">{{ $order->order_id }}</a></strong></p>
+                                        <p class="mb-1">Order Id : <strong><a href="{{ route('orders.view',$order->id) }}">{{ $order->order_id }}</a></strong></p>
                                         <div class="timeline-header flex-wrap mb-2 mt-3 mt-sm-0">
                                             <h6 class="mb-0">Customer Name : {{ $order->name }}</h6>
                                             <span class="text-muted">
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between flex-wrap flex-sm-row flex-column text-center">
                                     <div class="mb-sm-0 mb-2 d-flex align-items-center">
-                                        <img src="{{ asset($order->createdBy->photo) }}" class="border rounded me-3" alt="Shoe img" height="62" width="62">
+                                        <img src="{{ asset(isset($order->createdBy->photo) ? $order->createdBy->photo : 'assets/img/website/default/profile.png') }}" class="border rounded me-3" alt="Shoe img" height="62" width="62">
                                         <div>
                                             <p class="mb-0">Agent</p>
                                             <span class="text-muted"><a href="{{ route('user.profile.view',$order->created_by) }}">{{ $order->createdBy->name }}</a></span>

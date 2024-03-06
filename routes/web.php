@@ -152,26 +152,26 @@ Route::middleware('auth')->group(function () {
 
     // Orders
 
-    Route::get('/orders', [OrderController::class, 'list'])->name('order.list');
+    Route::get('/orders', [OrderController::class, 'list'])->name('orders.list');
 
-    Route::get('/orders/datatable', [OrderController::class, 'datatblesList'])->name('order.list.datatables');
+    Route::get('/orders/datatable', [OrderController::class, 'datatblesList'])->name('orders.list.datatables');
 
-    Route::get('/order/add', [OrderController::class, 'add'])->name('order.add');
+    Route::get('/order/add', [OrderController::class, 'add'])->name('orders.add');
 
-    Route::post('/order/add/submit', [OrderController::class, 'addSubmit'])->name('order.add.submit');
+    Route::post('/order/add/submit', [OrderController::class, 'addSubmit'])->name('orders.add.submit');
 
-    Route::get('/order/{id}/edit', [OrderController::class, 'edit'])->name('order.edit');
+    Route::get('/order/{id}/edit', [OrderController::class, 'edit'])->name('orders.edit');
 
-    Route::post('/order/edit/submit', [OrderController::class, 'editSubmit'])->name('order.edit.submit');
+    Route::post('/order/edit/submit', [OrderController::class, 'editSubmit'])->name('orders.edit.submit');
 
-    Route::get('/order/{id}/delete', [OrderController::class, 'delete'])->name('order.delete');
+    Route::get('/order/{id}/delete', [OrderController::class, 'delete'])->name('orders.delete');
 
-    Route::get('/order/{id}/view', [OrderController::class, 'viewOrder'])->name('order.view');
+    Route::get('/order/{id}/view', [OrderController::class, 'viewOrder'])->name('orders.view');
 
-    Route::post('/order/update/status', [OrderController::class, 'updateOrderStatus'])->name('order.update.status');
+    Route::post('/order/update/status', [OrderController::class, 'updateOrderStatus'])->name('orders.update.status');
 
     // Order Timeline 
-    Route::get('/order/{id}/timeline/delete', [OrderController::class, 'deleteOrderTimeline'])->name('order.timeline.delete');
+    Route::get('/order/{id}/timeline/delete', [OrderController::class, 'deleteOrderTimeline'])->name('orders.timeline.delete');
 
     // Settings
     Route::get('/settings', [SettingsController::class, 'viewSettings'])->name('settings');

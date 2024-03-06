@@ -46,7 +46,7 @@ class OrderController extends Controller
 
         return DataTables::of($data)
             ->addColumn('actions', function (Order $order) {
-                return '<a href="' . route('order.edit', $order->id) . '" class="mx-2"><i class="fa-solid fa-edit"></i> Edit</a>';
+                return '<a href="' . route('orders.edit', $order->id) . '" class="mx-2"><i class="fa-solid fa-edit"></i> Edit</a>';
             })
             ->addColumn('product_name', function (Order $order) {
                 if ($order->product) {
@@ -85,7 +85,7 @@ class OrderController extends Controller
         $order->note = $req->note;
         $order->product_id = $req->product_id;
         if ($order->save()) {
-            return redirect()->route('order.list')->with('success', 'Successfully order updated');
+            return redirect()->route('orders.list')->with('success', 'Successfully order updated');
         }
         return redirect()->back()->with('error', 'Failed to updated order.');
     }
@@ -108,7 +108,7 @@ class OrderController extends Controller
         if ($order) {
             $order->order_id = "#" . str_pad($order->id, 5, '0', STR_PAD_LEFT);
             $order->save();
-            return redirect()->route('order.list')->with('success', 'Successfully order created');
+            return redirect()->route('orders.list')->with('success', 'Successfully order created');
         }
         return redirect()->back()->with('error', 'Failed to create order.');
     }

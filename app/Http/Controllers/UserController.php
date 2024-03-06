@@ -15,7 +15,7 @@ class UserController extends Controller
 
     public function List()
     {
-        $users = User::where('id', '!=', 1)->orderBy('id', 'DESC')->get();
+        $users = User::orderBy('id', 'DESC')->get();
         return view('templates.pages.admins_list', compact('users'));
     }
 

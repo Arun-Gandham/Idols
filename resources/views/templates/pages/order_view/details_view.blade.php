@@ -64,7 +64,7 @@
     <div class="card">
         <div class="card-body">
 
-            <form class="card-body" method="POST" action="{{ route('order.update.status') }}" enctype="multipart/form-data">
+            <form class="card-body" method="POST" action="{{ route('orders.update.status') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <small class="card-text text-uppercase">Update Status</small>
@@ -166,7 +166,7 @@
                             <p class="mb-2">Amount: ---</p>
                             <div class="d-flex flex-wrap">
                                 <div class="avatar me-2">
-                                    <img src="{{ asset($order->createdBy->photo) }}" alt="Avatar" class="rounded-circle" />
+                                    <img src="{{ asset(isset($order->createdBy->photo) ? $order->createdBy->photo : 'assets/img/website/default/profile.png') }}" alt="Avatar" class="rounded-circle" />
                                 </div>
                                 <div class="ms-1">
                                     <h6 class="mb-0"><a href="{{ route('user.profile.view',$order->createdBy->id) }}">{{ $order->createdBy->name }}</a></h6>
@@ -182,7 +182,7 @@
                             <div class="timeline-header">
                                 <h6 class="mb-0">{{ isset($timeline->timelineStatus->name) ? $timeline->timelineStatus->name : "---" }}
                                     @if($timeline->is_deleted === 0)
-                                    <a data-bs-toggle="modal" style="cursor: pointer;" data-bs-target="#modalCenter" id="deleteButton" data-url="{{ route('order.timeline.delete',$timeline->id) }}">
+                                    <a data-bs-toggle="modal" style="cursor: pointer;" data-bs-target="#modalCenter" id="deleteButton" data-url="{{ route('orders.timeline.delete',$timeline->id) }}">
                                         <i class="fa fa-trash text-danger"></i>
                                     </a>
                                     @endif
@@ -207,7 +207,7 @@
                             <p class="mb-2">Amount: {{ isset($timeline->amount) ? $timeline->amount : "---" }}</p>
                             <div class="d-flex flex-wrap">
                                 <div class="avatar me-2">
-                                    <img src="{{ asset($timeline->createdBy->photo) }}" alt="Avatar" class="rounded-circle" />
+                                    <img src="{{ asset(isset($timeline->createdBy->photo) ? $timeline->createdBy->photo : 'assets/img/website/default/profile.png') }}" alt="Avatar" class="rounded-circle" />
                                 </div>
                                 <div class="ms-1">
                                     <h6 class="mb-0"><a href="{{ route('user.profile.view',$timeline->createdBy->id) }}">{{ $timeline->createdBy->name }}</a></h6>

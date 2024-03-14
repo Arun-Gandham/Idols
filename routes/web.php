@@ -216,6 +216,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/delete/{id}', [TestimonialContorller::class, 'delete'])->name('delete');
     });
+
+    Route::get('/navbar/search', [DashboardController::class, 'navbarSearch'])->name('navbar.search');
 });
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');

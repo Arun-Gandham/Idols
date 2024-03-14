@@ -401,7 +401,7 @@ if (typeof $ !== 'undefined') {
       }
       // Search API AJAX call
       var searchData = $.ajax({
-        url: assetsPath + 'json/' + searchJson, //? Use your own search api instead
+        url: "/navbar/search", //? Use your own search api instead
         dataType: 'json',
         async: false
       }).responseJSON;
@@ -421,12 +421,12 @@ if (typeof $ !== 'undefined') {
             // ? Add/Update blocks as per need
             // Pages
             {
-              name: 'pages',
+              name: 'users',
               display: 'name',
               limit: 5,
-              source: filterConfig(searchData.pages),
+              source: filterConfig(searchData.users),
               templates: {
-                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Pages</h6>',
+                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Users</h6>',
                 suggestion: function ({ url, icon, name }) {
                   return (
                     '<a href="' +

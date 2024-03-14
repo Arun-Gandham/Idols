@@ -15,4 +15,16 @@ class DashboardController extends Controller
         $products = Product::where('model',$settings->model)->get();
         return view('templates.pages.dashboard',compact('products'));
     }
+
+    public function navbarSearch()
+    {
+        return json_encode(["users" => [
+              [
+                "name"=> "Dashboard Analytics",
+                "icon"=>"ti-smart-home",
+                "url"=> "/"
+              ]
+        ]]);
+    }
+    
 }
